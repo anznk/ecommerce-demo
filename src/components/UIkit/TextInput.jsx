@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/styles";
 
-const TextInput = {props} =>{
+const TextInput = (props) =>{
   return (
     <TextField 
       fullWidth={props.fullWidth}
@@ -11,7 +11,7 @@ const TextInput = {props} =>{
       multiline={props.multiline}
       required={props.required}
       rpws={props.rows}
-      value={props.value}
+      defaultValue={props.value}
       type={props.type}
       onChange={props.onChange}
     />
