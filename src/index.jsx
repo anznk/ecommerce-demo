@@ -13,7 +13,6 @@ import {theme} from './assets/theme'
 import App from './App';
 
 // connected-react-router - action経由でルーティングが可能、push,replace..
-// historyを強化
 const history = History.createBrowserHistory();
 export const store = createStore(history);
 

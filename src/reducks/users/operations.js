@@ -7,9 +7,17 @@ import {
     editProfileStateAction,
     fetchProductsInCartAction, fetchOrdersHistoryAction,
 } from "./actions";
-
+import {hideLoadingAction, showLoadingAction} from "../loading/actions";
+import {initProductsAction} from "../products/actions";
 
 const usersRef = db.collection('users')
+
+
+export const fetchProductsInCart = (products) => {
+    return async (dispatch) => {
+        dispatch(fetchProductsInCartAction(products))
+    }
+}
 
 export const signUp = (username, email, password, confirmPassword) => {
   return async (dispatch) => {
@@ -33,30 +41,32 @@ export const signUp = (username, email, password, confirmPassword) => {
     }
     return auth.createUserWithEmailAndPassword(email, password)
       .then(result => {
-        // dispatch(showLoadingAction("Sign up..."))
+        dispatch(showLoadingAction("Sign up..."))
         const user = result.user;
         if (user) {
           const uid = user.uid;
           const timestamp = FirebaseTimestamp.now();
 
           const userInitialData = {
-              customer_id: "",
-              created_at: timestamp,
-              email: email,
-              role: "customer",
-              payment_method_id: "",
-              uid: uid,
-              updated_at: timestamp,
-              username: username
+            customer_id: "",
+            created_at: timestamp,
+            email: email,
+            role: "customer",
+            payment_method_id: "",
+            uid: uid,
+            updated_at: timestamp,
+            username: username
           };
 
           usersRef.doc(uid).set(userInitialData).then(async () => {
-            console.log("a");
             dispatch(push('/'))
-            console.log("b");
-            // dispatch(hideLoadingAction())
+            dispatch(hideLoadingAction())
           })
         }
+      }).catch((error) => {
+        dispatch(hideLoadingAction())
+        alert('アカウント登録に失敗しました。もう1度お試しください。')
+        throw new Error(error)
       })
   }
 }
@@ -86,6 +96,32 @@ export const listenAuthState = () => {
             } else {
                 dispatch(push('/signin'))
             }
+        })
+    }
+};
+
+export const signOut = () => {
+    return async (dispatch, getState) => {
+        dispatch(showLoadingAction("Sign out..."));
+        const uid = getState().users.uid
+
+        // Delete products from the user's cart
+        await usersRef.doc(uid).collection('cart').get()
+            .then(snapshots => {
+                snapshots.forEach(snapshot => {
+                    usersRef.doc(uid).collection('cart').doc(snapshot.id).delete()
+                })
+            });
+
+        // Sign out with Firebase Authentication
+        auth.signOut().then(() => {
+            dispatch(signOutAction());
+            dispatch(initProductsAction())
+            dispatch(hideLoadingAction());
+            dispatch(push('/signin'));
+        }).catch(() => {
+            dispatch(hideLoadingAction());
+            throw new Error('ログアウトに失敗しました。')
         })
     }
 };

@@ -95,7 +95,6 @@ const SignUp = () => {
         <div className="center">
           <PrimaryButton
               label={"Register"}
-              // onClick={() => alert(username)}
               onClick={() => dispatch(signUp(username, email, password, confirmPassword))}
           />
           <div className="module-spacer--small" />
