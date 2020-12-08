@@ -1,6 +1,12 @@
 import {isValidEmailFormat, isValidRequiredInput} from "../../function/common";
 import {auth, db, FirebaseTimestamp} from "../../firebase/index"
 import {push, goBack} from 'connected-react-router'
+import {
+    signOutAction,
+    signInAction,
+    editProfileStateAction,
+    fetchProductsInCartAction, fetchOrdersHistoryAction,
+} from "./actions";
 
 
 const usersRef = db.collection('users')
@@ -45,10 +51,41 @@ export const signUp = (username, email, password, confirmPassword) => {
           };
 
           usersRef.doc(uid).set(userInitialData).then(async () => {
+            console.log("a");
             dispatch(push('/'))
+            console.log("b");
             // dispatch(hideLoadingAction())
           })
         }
       })
   }
 }
+
+export const listenAuthState = () => {
+    return async (dispatch) => {
+        return auth.onAuthStateChanged(user => {
+            if (user) {
+                usersRef.doc(user.uid).get()
+                    .then(snapshot => {
+                        const data = snapshot.data()
+                        if (!data) {
+                            throw new Error('ユーザーデータが存在しません。')
+                        }
+
+                        // Update logged in user state
+                        dispatch(signInAction({
+                            customer_id: (data.customer_id) ? data.customer_id : "",
+                            email: data.email,
+                            isSignedIn: true,
+                            payment_method_id: (data.payment_method_id) ? data.payment_method_id : "",
+                            role: data.role,
+                            uid: user.uid,
+                            username: data.username,
+                        }))
+                    })
+            } else {
+                dispatch(push('/signin'))
+            }
+        })
+    }
+};
