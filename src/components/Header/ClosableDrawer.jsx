@@ -20,127 +20,127 @@ import {db} from "../../firebase";
 import {getUserRole} from "../../reducks/users/selectors";
 
 const useStyles = makeStyles((theme) =>
-    createStyles({
-        drawer: {
-            [theme.breakpoints.up('sm')]: {
-                width: 256,
-                flexShrink: 0,
-            }
-        },
-        // necessary for content to be below app bar
-        toolbar: theme.mixins.toolbar,
-        drawerPaper: {
-            width: 256,
-        },
-        searchField: {
-            alignItems: 'center',
-            display: 'flex',
-            marginLeft: 32
-        }
-    }),
+	createStyles({
+		drawer: {
+			[theme.breakpoints.up('sm')]: {
+				width: 256,
+				flexShrink: 0,
+			}
+		},
+		// necessary for content to be below app bar
+		toolbar: theme.mixins.toolbar,
+		drawerPaper: {
+			width: 256,
+		},
+		searchField: {
+			alignItems: 'center',
+			display: 'flex',
+			marginLeft: 32
+		}
+	}),
 );
 
 const ClosableDrawer = (props) => {
-    const { container } = props;
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    const selector = useSelector(state  => state);
-    const userRole = getUserRole(selector);
-    const isAdministrator = (userRole === "administrator");
+	const { container } = props;
+	const classes = useStyles();
+	const dispatch = useDispatch();
+	const selector = useSelector(state  => state);
+	const userRole = getUserRole(selector);
+	const isAdministrator = (userRole === "administrator");
 
-    const selectMenu = (event, path) => {
-        dispatch(push(path));
-        props.onClose(event, false);
-    };
+	const selectMenu = (event, path) => {
+		dispatch(push(path));
+		props.onClose(event, false);
+	};
 
-    const [searchKeyword, setSearchKeyword] = useState(""),
-          [filters, setFilters] = useState([
-              {func: selectMenu, label: "All", id: "all", value: "/"},
-              {func: selectMenu, label: "2020-21 F/W", id: "2020FW", value: "/?season=2020FW"},
-              {func: selectMenu, label: "2020-21 S/S", id: "2020SS", value: "/?season=2020SS"},
-          ]);
+	const [searchKeyword, setSearchKeyword] = useState(""),
+		[filters, setFilters] = useState([
+			{func: selectMenu, label: "All", id: "all", value: "/"},
+			{func: selectMenu, label: "2020-21 F/W", id: "2020FW", value: "/?season=2020FW"},
+			{func: selectMenu, label: "2020-21 S/S", id: "2020SS", value: "/?season=2020SS"},
+		]);
 
-    const menus = [
-        {func: selectMenu, label: "商品登録", icon: <AddCircleIcon/>, id: "register", value: "/product/edit"},
-        {func: selectMenu, label: "History", icon: <HistoryIcon/>, id: "history", value: "/order/history"},
-        {func: selectMenu, label: "My page", icon: <PersonIcon/>, id: "mypage", value: "/user/mypage"},
-    ];
+	const menus = [
+		{func: selectMenu, label: "商品登録", icon: <AddCircleIcon/>, id: "register", value: "/product/edit"},
+		{func: selectMenu, label: "History", icon: <HistoryIcon/>, id: "history", value: "/order/history"},
+		{func: selectMenu, label: "My page", icon: <PersonIcon/>, id: "mypage", value: "/user/mypage"},
+	];
 
-    useEffect(() => {
-        db.collection('categories').orderBy("order", "asc").get()
-            .then(snapshots => {
-                const list = []
-                snapshots.forEach(snapshot => {
-                    const category = snapshot.data()
-                    list.push({func: selectMenu, label: category.name, id: category.id, value: `/?category=${category.id}`})
-                })
-                setFilters(prevState => [...prevState, ...list])
-            });
-    },[])
+	useEffect(() => {
+		db.collection('categories').orderBy("order", "asc").get()
+			.then(snapshots => {
+				const list = []
+				snapshots.forEach(snapshot => {
+					const category = snapshot.data()
+					list.push({func: selectMenu, label: category.name, id: category.id, value: `/?category=${category.id}`})
+				})
+				setFilters(prevState => [...prevState, ...list])
+			});
+	},[])
 
-    const inputSearchKeyword = useCallback((event) => {
-        setSearchKeyword(event.target.value)
-    }, [setSearchKeyword])
+	const inputSearchKeyword = useCallback((event) => {
+		setSearchKeyword(event.target.value)
+	}, [setSearchKeyword])
 
-    return (
-        <nav className={classes.drawer} aria-label="mailbox folders">
-            <Drawer
-                container={container}
-                variant="temporary"
-                anchor={"right"}
-                open={props.open}
-                onClose={(e) => props.onClose(e, false)}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}
-            >
-                <div
-                    onClose={(e) => props.onClose(e, false)}
-                    onKeyDown={(e) => props.onClose(e, false)}
-                >
-                    <div className={classes.searchField}>
-                        <TextInput
-                            fullWidth={false} label={"Search"} multiline={false}
-                            onChange={inputSearchKeyword} required={false} rows={1} value={searchKeyword} type={"text"}
-                        />
-                        <IconButton>
-                            <SearchIcon />
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        {menus.map(menu => (
-                            ((isAdministrator && menu.id === "register") || menu.id !== "register") && (
-                                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-                                    <ListItemIcon>
-                                        {menu.icon}
-                                    </ListItemIcon>
-                                    <ListItemText primary={menu.label} />
-                                </ListItem>
-                            )
-                        ))}
-                        <ListItem button key="logout" onClick={() => dispatch(signOut())}>
-                            <ListItemIcon>
-                                <ExitToAppIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Logout" />
-                        </ListItem>
-                    </List>
-                    <Divider />
-                    <List>
-                        {filters.map(filter => (
-                            <ListItem button key={filter.id} onClick={(e) => filter.func(e, filter.value)}>
-                                <ListItemText primary={filter.label} />
-                            </ListItem>
-                        ))}
-                    </List>
-                </div>
-            </Drawer>
-        </nav>
-    );
+	return (
+		<nav className={classes.drawer} aria-label="mailbox folders">
+			<Drawer
+				container={container}
+				variant="temporary"
+				anchor={"right"}
+				open={props.open}
+				onClose={(e) => props.onClose(e, false)}
+				classes={{
+					paper: classes.drawerPaper,
+				}}
+				ModalProps={{
+					keepMounted: true, // Better open performance on mobile.
+				}}
+			>
+				<div
+					onClose={(e) => props.onClose(e, false)}
+					onKeyDown={(e) => props.onClose(e, false)}
+				>
+				<div className={classes.searchField}>
+					<TextInput
+						fullWidth={false} label={"Search"} multiline={false}
+						onChange={inputSearchKeyword} required={false} rows={1} value={searchKeyword} type={"text"}
+					/>
+					<IconButton>
+						<SearchIcon />
+					</IconButton>
+				</div>
+			<Divider />
+					<List>
+						{menus.map(menu => (
+							((isAdministrator && menu.id === "register") || menu.id !== "register") && (
+								<ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+									<ListItemIcon>
+										{menu.icon}
+									</ListItemIcon>
+									<ListItemText primary={menu.label} />
+								</ListItem>
+							)
+						))}
+						<ListItem button key="logout" onClick={() => dispatch(signOut())}>
+							<ListItemIcon>
+								<ExitToAppIcon/>
+							</ListItemIcon>
+							<ListItemText primary="Logout" />
+						</ListItem>
+					</List>
+						<Divider />
+						<List>
+							{filters.map(filter => (
+								<ListItem button key={filter.id} onClick={(e) => filter.func(e, filter.value)}>
+									<ListItemText primary={filter.label} />
+								</ListItem>
+							))}
+						</List>
+				</div>
+			</Drawer>
+		</nav>
+	);
 }
 
 export default ClosableDrawer
