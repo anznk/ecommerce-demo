@@ -55,15 +55,15 @@ const ClosableDrawer = (props) => {
 
     const [searchKeyword, setSearchKeyword] = useState(""),
           [filters, setFilters] = useState([
-              {func: selectMenu, label: "すべて",    id: "all",    value: "/"              },
-              {func: selectMenu, label: "メンズ",    id: "male",   value: "/?gender=male"  },
-              {func: selectMenu, label: "レディース", id: "female", value: "/?gender=female"},
+              {func: selectMenu, label: "All", id: "all", value: "/"},
+              {func: selectMenu, label: "2020-21 F/W", id: "2020FW", value: "/?season=2020FW"},
+              {func: selectMenu, label: "2020-21 S/S", id: "2020SS", value: "/?season=2020SS"},
           ]);
 
     const menus = [
-        {func: selectMenu, label: "商品登録",    icon: <AddCircleIcon/>, id: "register", value: "/product/edit"},
-        {func: selectMenu, label: "注文履歴",    icon: <HistoryIcon/>,   id: "history",  value: "/order/history"},
-        {func: selectMenu, label: "プロフィール", icon: <PersonIcon/>,    id: "profile",  value: "/user/mypage"},
+        {func: selectMenu, label: "商品登録", icon: <AddCircleIcon/>, id: "register", value: "/product/edit"},
+        {func: selectMenu, label: "History", icon: <HistoryIcon/>, id: "history", value: "/order/history"},
+        {func: selectMenu, label: "My page", icon: <PersonIcon/>, id: "mypage", value: "/user/mypage"},
     ];
 
     useEffect(() => {
@@ -103,7 +103,7 @@ const ClosableDrawer = (props) => {
                 >
                     <div className={classes.searchField}>
                         <TextInput
-                            fullWidth={false} label={"キーワードを入力"} multiline={false}
+                            fullWidth={false} label={"Search"} multiline={false}
                             onChange={inputSearchKeyword} required={false} rows={1} value={searchKeyword} type={"text"}
                         />
                         <IconButton>
@@ -126,7 +126,7 @@ const ClosableDrawer = (props) => {
                             <ListItemIcon>
                                 <ExitToAppIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="ログアウト" />
+                            <ListItemText primary="Logout" />
                         </ListItem>
                     </List>
                     <Divider />

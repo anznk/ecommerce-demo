@@ -14,30 +14,30 @@ const usersRef = db.collection('users')
 
 
 export const fetchProductsInCart = (products) => {
-    return async (dispatch) => {
-        dispatch(fetchProductsInCartAction(products))
-    }
+  return async (dispatch) => {
+    dispatch(fetchProductsInCartAction(products))
+  }
 }
 
 export const signUp = (username, email, password, confirmPassword) => {
   return async (dispatch) => {
     // Validations
     if(!isValidRequiredInput(username, email, password, confirmPassword)) {
-        alert('必須項目が未入力です。');
-        return false
+      alert('This field is required');
+      return false
     }
 
     if(!isValidEmailFormat(email)) {
-        alert('メールアドレスの形式が不正です。もう1度お試しください。')
-        return false
+      alert('invalid email address')
+      return false
     }
     if (password !== confirmPassword) {
-        alert('パスワードが一致しません。もう1度お試しください。')
-        return false
+      alert("Password doesn't match")
+      return false
     }
     if (password.length < 6) {
-        alert('パスワードは6文字以上で入力してください。')
-        return false
+      alert('password must be at least 6 characters long')
+      return false
     }
     return auth.createUserWithEmailAndPassword(email, password)
       .then(result => {
@@ -65,41 +65,88 @@ export const signUp = (username, email, password, confirmPassword) => {
         }
       }).catch((error) => {
         dispatch(hideLoadingAction())
-        alert('アカウント登録に失敗しました。もう1度お試しください。')
+        alert('Sorry.... Failed to register. Try again.')
         throw new Error(error)
       })
   }
 }
 
 export const listenAuthState = () => {
-    return async (dispatch) => {
-        return auth.onAuthStateChanged(user => {
-            if (user) {
-                usersRef.doc(user.uid).get()
-                    .then(snapshot => {
-                        const data = snapshot.data()
-                        if (!data) {
-                            throw new Error('ユーザーデータが存在しません。')
-                        }
-
-                        // Update logged in user state
-                        dispatch(signInAction({
-                            customer_id: (data.customer_id) ? data.customer_id : "",
-                            email: data.email,
-                            isSignedIn: true,
-                            payment_method_id: (data.payment_method_id) ? data.payment_method_id : "",
-                            role: data.role,
-                            uid: user.uid,
-                            username: data.username,
-                        }))
-                    })
-            } else {
-                dispatch(push('/signin'))
+  return async (dispatch) => {
+    return auth.onAuthStateChanged(user => {
+      if (user) {
+        usersRef.doc(user.uid).get()
+          .then(snapshot => {
+            const data = snapshot.data()
+            if (!data) {
+                throw new Error('user not found')
             }
-        })
-    }
+
+            // Update logged in user state
+            dispatch(signInAction({
+                customer_id: (data.customer_id) ? data.customer_id : "",
+                email: data.email,
+                isSignedIn: true,
+                payment_method_id: (data.payment_method_id) ? data.payment_method_id : "",
+                role: data.role,
+                uid: user.uid,
+                username: data.username,
+            }))
+          })
+      } else {
+        dispatch(push('/signin'))
+      }
+    })
+  }
 };
 
+export const signIn = (email, password) => {
+    return async (dispatch) => {
+        dispatch(showLoadingAction("Sign in..."));
+        if (!isValidRequiredInput(email, password)) {
+            dispatch(hideLoadingAction());
+            alert('This field is required')
+            return false
+        }
+        if (!isValidEmailFormat(email)) {
+            dispatch(hideLoadingAction());
+            alert('Invalid email address')
+            return false
+        }
+        return auth.signInWithEmailAndPassword(email, password)
+            .then(result => {
+                const userState = result.user
+                if (!userState) {
+                    dispatch(hideLoadingAction());
+                    throw new Error("Couldn't get user ID");
+                }
+                const userId = userState.uid;
+
+                return usersRef.doc(userId).get().then(snapshot => {
+                    const data = snapshot.data();
+                    if (!data) {
+                        dispatch(hideLoadingAction());
+                        throw new Error("Couldn't find user ID");
+                    }
+
+                    dispatch(signInAction({
+                        customer_id: (data.customer_id) ? data.customer_id : "",
+                        email: data.email,
+                        isSignedIn: true,
+                        role: data.role,
+                        payment_method_id: (data.payment_method_id) ? data.payment_method_id : "",
+                        uid: userId,
+                        username: data.username,
+                    }));
+
+                    dispatch(hideLoadingAction());
+                    dispatch(push('/'))
+                })
+            }).catch(() => {
+                dispatch(hideLoadingAction());
+            });
+    }
+};
 export const signOut = () => {
     return async (dispatch, getState) => {
         dispatch(showLoadingAction("Sign out..."));
@@ -121,7 +168,7 @@ export const signOut = () => {
             dispatch(push('/signin'));
         }).catch(() => {
             dispatch(hideLoadingAction());
-            throw new Error('ログアウトに失敗しました。')
+            throw new Error('Failed to logout')
         })
     }
 };

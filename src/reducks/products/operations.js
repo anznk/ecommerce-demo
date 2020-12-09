@@ -36,7 +36,7 @@ export const fetchProducts = (gender, category) => {
 
 export const orderProduct = (productsInCart, price) => {
     return async (dispatch, getState) => {
-        dispatch(showLoadingAction("決済処理中..."));
+        dispatch(showLoadingAction("Processing..."));
 
         const uid = getState().users.uid;
         const userRef = db.collection('users').doc(uid);
@@ -86,8 +86,8 @@ export const orderProduct = (productsInCart, price) => {
         }
 
         if (soldOutProducts.length > 0) {
-            const errorMessage = (soldOutProducts.length > 1) ? soldOutProducts.join('と') : soldOutProducts[0];
-            alert('大変申し訳ありません。' + errorMessage + 'が在庫切れとなったため注文処理を中断しました。');
+            const errorMessage = (soldOutProducts.length > 1) ? soldOutProducts.join('and') : soldOutProducts[0];
+            alert('Sorry' + errorMessage + 'is out of stock');
             return false
         } else {
             batch.commit()
@@ -113,7 +113,7 @@ export const orderProduct = (productsInCart, price) => {
                     dispatch(hideLoadingAction());
                     dispatch(push('/order/complete'))
                 }).catch(() => {
-                    alert('注文処理に失敗しました。通信環境をご確認のうえ、もう一度お試しください。')
+                    alert('Sorry... Failed to order. Please try again.')
                 })
         }
     }

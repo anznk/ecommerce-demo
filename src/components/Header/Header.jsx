@@ -4,7 +4,7 @@ import AppBar                         from '@material-ui/core/AppBar';
 import Toolbar                        from '@material-ui/core/Toolbar';
 import {useDispatch, useSelector}     from "react-redux";
 import {getSignedIn}                  from "../../reducks/users/selectors";
-// import logo                           from "../../assets/img/icons/logo.png";
+import logo                           from "../../assets/img/icons/logo.png";
 import {HeaderMenu, ClosableDrawer}   from "./index";
 import {push}                         from "connected-react-router"
 
@@ -47,7 +47,7 @@ const Header = () => {
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.menuBar}>
                 <Toolbar className={classes.toolbar}>
-                    {/* <img alt="Logo" src={logo} width="128px" onClick={() => dispatch(push('/'))} role="button" /> */}
+                    <img alt="Logo" src={logo} width="128px" onClick={() => dispatch(push('/'))} role="button" />
                     {isSignedIn && (
                         <div className={classes.iconButtons}>
                             <HeaderMenu handleDrawerToggle={handleDrawerToggle} />
