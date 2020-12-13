@@ -5,4 +5,5 @@
 // export {default as OrderHistoryItem} from './OrderHistoryItem'
 export {default as ProductCard} from './ProductCard'
 // export {default as SetSizesArea} from './SetSizesArea'
-// export {default as SizeTable} from './SizeTable'
+export {default as SizeTable} from './SizeTable'
+export {default as ImageSwiper} from './ImageSwiper'

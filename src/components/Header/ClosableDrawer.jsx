@@ -111,32 +111,32 @@ const ClosableDrawer = (props) => {
 					</IconButton>
 				</div>
 			<Divider />
-					<List>
-						{menus.map(menu => (
-							((isAdministrator && menu.id === "register") || menu.id !== "register") && (
-								<ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-									<ListItemIcon>
-										{menu.icon}
-									</ListItemIcon>
-									<ListItemText primary={menu.label} />
-								</ListItem>
-							)
-						))}
-						<ListItem button key="logout" onClick={() => dispatch(signOut())}>
-							<ListItemIcon>
-								<ExitToAppIcon/>
-							</ListItemIcon>
-							<ListItemText primary="Logout" />
+				<List>
+					{menus.map(menu => (
+						((isAdministrator && menu.id === "register") || menu.id !== "register") && (
+							<ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+								<ListItemIcon>
+									{menu.icon}
+								</ListItemIcon>
+								<ListItemText primary={menu.label} />
+							</ListItem>
+						)
+					))}
+					<ListItem button key="logout" onClick={() => dispatch(signOut())}>
+						<ListItemIcon>
+							<ExitToAppIcon/>
+						</ListItemIcon>
+						<ListItemText primary="Logout" />
+					</ListItem>
+				</List>
+				<Divider />
+				<List>
+					{filters.map(filter => (
+						<ListItem button key={filter.id} onClick={(e) => filter.func(e, filter.value)}>
+							<ListItemText primary={filter.label} />
 						</ListItem>
-					</List>
-						<Divider />
-						<List>
-							{filters.map(filter => (
-								<ListItem button key={filter.id} onClick={(e) => filter.func(e, filter.value)}>
-									<ListItemText primary={filter.label} />
-								</ListItem>
-							))}
-						</List>
+					))}
+				</List>
 				</div>
 			</Drawer>
 		</nav>
