@@ -12,11 +12,11 @@ const ProductEdit = () => {
         id = id.split('/')[1]
     }
 
-    const genders = [
-        {id: "all", name: "すべて"},
-        {id: "male", name: "メンズ"},
-        {id: "female", name: "レディース"}
-    ];
+    // const genders = [
+    //     {id: "all", name: "すべて"},
+    //     {id: "male", name: "メンズ"},
+    //     {id: "female", name: "レディース"}
+    // ];
 
     const [name, setName] = useState(""),
           [description, setDescription] = useState(""),
@@ -66,25 +66,25 @@ const ProductEdit = () => {
 
     return (
         <section>
-            <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
+            <h2 className="u-text__headline u-text-center">Edit products</h2>
             <div className="c-section-container">
                 <ImageArea images={images} setImages={setImages} />
                 <TextInput
-                    fullWidth={true} label={"商品名"} multiline={false} required={true}
+                    fullWidth={true} label={"Name"} multiline={false} required={true}
                     onChange={inputName} rows={1} value={name} type={"text"}
                 />
                 <TextInput
-                    fullWidth={true} label={"商品説明"} multiline={true} required={true}
+                    fullWidth={true} label={"detail"} multiline={true} required={true}
                     onChange={inputDescription} rows={5} value={description} type={"text"}
                 />
                 <SelectBox
-                    label={"カテゴリー"} options={categories} required={true} select={setCategory} value={category}
+                    label={"Category"} options={categories} required={true} select={setCategory} value={category}
                 />
-                <SelectBox
-                    label={"性別"} options={genders} required={true} select={setGender} value={gender}
-                />
+                {/* <SelectBox
+                    label={"Gender"} options={genders} required={true} select={setGender} value={gender}
+                /> */}
                 <TextInput
-                    fullWidth={true} label={"価格"} multiline={false} required={true}
+                    fullWidth={true} label={"Price"} multiline={false} required={true}
                     onChange={inputPrice} rows={1} value={price} type={"number"}
                 />
                 <div className="module-spacer--small"/>
@@ -92,7 +92,7 @@ const ProductEdit = () => {
                 <div className="module-spacer--small" />
                 <div className="center">
                     <PrimaryButton
-                        label={"商品情報を保存"}
+                        label={"Save"}
                         onClick={() => dispatch(saveProduct(id, name, description, category, gender, price, sizes, images))}
                     />
                 </div>
