@@ -1,5 +1,5 @@
   
-// export {default as CartList} from './CartList'
+export {default as CartList} from './CartList'
 // export {default as CheckoutWrapper} from './CheckoutWrapper'
 // export {default as OrderConfirm} from './OrderConfirm'
 // export {default as OrderComplete} from './OrderComplete'
