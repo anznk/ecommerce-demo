@@ -55,19 +55,31 @@ const ProductDetail = () => {
     },[])
 
     // const addProduct = useCallback((selectedSize) => {
-    //     const timestamp = FirebaseTimestamp.now()
-    //     dispatch(addProductToCart({
-    //         added_at: timestamp,
-    //         description: product.description,
-    //         gender: product.gender,
-    //         images: product.images,
-    //         name: product.name,
-    //         price: product.price,
-    //         productId: product.id,
-    //         quantity: 1,
-    //         size: selectedSize
-    //     }))
+    //     alert("aa");
+    //   const timestamp = FirebaseTimestamp.now()
+    //   dispatch(addProductToCart({
+    //     added_at: timestamp,
+    //     description: product.description,
+    //     images: product.images,
+    //     name: product.name,
+    //     price: product.price,
+    //     productId: product.id,
+    //     quantity: 1,
+    //     size: selectedSize
+    //   }))
     // }, [product])
+    const addProduct = ()=> {
+			const timestamp = FirebaseTimestamp.now()
+      dispatch(addProductToCart({
+        added_at: timestamp,
+        description: product.description,
+        images: product.images,
+        name: product.name,
+        price: product.price,
+        productId: product.id,
+        quantity: 1
+      }))
+    }
 
     return (
         <section className="c-section-wrapin">
@@ -80,7 +92,7 @@ const ProductDetail = () => {
                         <h2 className="u-text__headline">{product.name}</h2>
                         <p className={classes.price}>¥{(product.price).toLocaleString()}</p>
                         <div className="module-spacer--small"/>
-                        {/* <SizeTable addProduct={addProduct} sizes={product.sizes} /> */}
+                        <button onClick={addProduct} >カートに入れる</button>
                         <div className="module-spacer--small"/>
                         <p>{returnCodeToBr(product.description)}</p>
                     </div>

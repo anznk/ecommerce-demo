@@ -12,6 +12,15 @@ import {initProductsAction} from "../products/actions";
 
 const usersRef = db.collection('users')
 
+export const addProductToCart = (addedProduct) => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid;
+    const cartRef = usersRef.doc(uid).collection('cart').doc();
+    addedProduct['cartId'] = cartRef.id;
+    await cartRef.set(addedProduct);
+    dispatch(push('/cart'))
+  }
+}
 
 export const fetchProductsInCart = (products) => {
   return async (dispatch) => {
