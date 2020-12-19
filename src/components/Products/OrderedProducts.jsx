@@ -43,13 +43,13 @@ const OrderedProducts = (props) => {
                     <>
                         <ListItem className={classes.list} key={product.id}>
                             <ListItemAvatar>
-                                <img className={classes.image} src={product.images[0].path} alt="商品のTOP画像" />
+                                <img className={classes.image} src={product.images[0].path} alt="Product image" />
                             </ListItemAvatar>
                             <div className={classes.text}>
-                                <ListItemText primary={product.name} secondary={"サイズ：" + product.size} />
+                                <ListItemText primary={product.name} secondary={"Size：" + product.size} />
                                 <ListItemText primary={"¥"+product.price.toLocaleString()} />
                             </div>
-                            <PrimaryButton label={"商品詳細を見る"} onClick={() => goToProductPage(product.id)} />
+                            <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} />
                         </ListItem>
                         <Divider />
                     </>
