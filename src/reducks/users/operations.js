@@ -28,6 +28,25 @@ export const fetchProductsInCart = (products) => {
   }
 }
 
+
+export const fetchOrdersHistory = () => {
+    return async (dispatch, getState) => {
+        const uid = getState().users.uid;
+        const list = []
+
+        usersRef.doc(uid).collection('orders')
+            .orderBy('updated_at', "desc").get()
+            .then(snapshots => {
+                snapshots.forEach(snapshot => {
+                    const data = snapshot.data();
+                    list.push(data)
+                });
+                dispatch(fetchOrdersHistoryAction(list))
+            })
+    }
+}
+
+
 export const signUp = (username, email, password, confirmPassword) => {
   return async (dispatch) => {
     // Validations
