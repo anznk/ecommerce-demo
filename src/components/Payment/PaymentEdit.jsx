@@ -58,13 +58,13 @@ const PaymentEdit = () => {
 
     return (
         <section className="c-section-container">
-            <h2 className="u-text__headline u-text-center">クレジットカード情報の登録・編集</h2>
+            <h2 className="u-text__headline u-text-center">Add Payment infomation</h2>
             <div className="module-spacer--medium"/>
-            <h3>現在登録されているカード情報</h3>
+            <h3>Credit Card Info</h3>
             <div className="module-spacer--small" />
             <TextDetail label={card.brand} value={cardNumber} key={card.id}/>
             <div className="module-spacer--small" />
-            <h3>カード情報の登録・編集</h3>
+            <h3>Resister and Edit</h3>
             <div className="module-spacer--small" />
             <CardElement
                 className={classes.element}
@@ -86,11 +86,10 @@ const PaymentEdit = () => {
             <div className="module-spacer--medium"/>
             <div>
                 <p>
-                    このECアプリではStripeのテスト用カードを使うことができます。<br/>
-                    実際に決済されることはないので安心して使ってください。
+                  This is for test
                 </p>
                 <p>
-                    CVCコード、郵便番号はどんな数字でもOKです。有効期限は未来の年月ならなんでもOK。<br/>
+                    you can type any number for CVC code、postcode <br/>
                 </p>
                 <div className="module-spacer--small"/>
                 <TextDetail label={"VISA"} value={"4242 4242 4242 4242"} key={"test-visa"}/>
@@ -102,11 +101,11 @@ const PaymentEdit = () => {
             <div className="module-spacer--medium"/>
             <div className="center">
                 <PrimaryButton
-                    label={"カード情報を保存する"}
+                    label={"Save"}
                     onClick={register}
                 />
                 <button
-                    label={"マイページに戻る"}
+                    label={"back to my page"}
                     onClick={goBackToMyPage}
                 />
             </div>
