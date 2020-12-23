@@ -40,7 +40,7 @@ const OrderConfirm = () => {
     },[productsInCart])
 
     const shippingFee = useMemo(() => (subtotal >= 10000) ? 0 : 210,[subtotal])
-    const tax = useMemo(() => (subtotal + shippingFee) * 0.1, [subtotal, shippingFee])
+    const tax = useMemo(() => (subtotal + shippingFee) * 0.12, [subtotal, shippingFee])
     const total = useMemo(() => subtotal + shippingFee + tax,[subtotal,shippingFee,tax])
 
     const order = useCallback(() => {
