@@ -81,12 +81,12 @@ const SetSizesArea = (props) => {
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>サイズ</TableCell>
-                            <TableCell>数量</TableCell>
+                            <TableCell>Size</TableCell>
+                            <TableCell>Quantity</TableCell>
                             <TableCell className={classes.iconCell} />
                             <TableCell className={classes.iconCell} />
                         </TableRow>
-                    </TableHead>
+          f          </TableHead>
                     <TableBody>
                         {props.sizes.length > 0 && (
                             props.sizes.map((item, index) => (
@@ -110,11 +110,11 @@ const SetSizesArea = (props) => {
                 </Table>
                 <div>
                     <TextInput
-                        fullWidth={false} label={"サイズ"} multiline={false} required={true}
+                        fullWidth={false} label={"Size"} multiline={false} required={true}
                         onChange={inputSize} rows={1} value={size} type={"text"}
                     />
                     <TextInput
-                        fullWidth={false} label={"数量"} multiline={false} required={true}
+                        fullWidth={false} label={"Quantity"} multiline={false} required={true}
                         onChange={inputQuantity} rows={1} value={quantity} type={"number"}
                     />
                 </div>
