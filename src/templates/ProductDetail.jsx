@@ -55,7 +55,7 @@ const ProductDetail = () => {
     },[])
 
     const addProduct = useCallback((selectedSize) => {
-        alert("aa");
+
       const timestamp = FirebaseTimestamp.now()
       dispatch(addProductToCart({
         added_at: timestamp,

@@ -51,20 +51,20 @@ export const orderProduct = (productsInCart, price) => {
 			const sizes = snapshot.data().sizes;
 
 			// Create a new array of the product sizes
-			// const updateSizes = sizes.map(size => {
-			// 	if (size.size === product.size) {
-			// 		if (size.quantity === 0) {
-			// 			soldOutProducts.push(product.name);
-			// 			return size
-			// 		}
-			// 		return {
-			// 			size: size.size,
-			// 			quantity: size.quantity - 1
-			// 		}
-			// 	} else {
-			// 		return size
-			// 	}
-			// });
+			const updateSizes = sizes.map(size => {
+				if (size.size === product.size) {
+					if (size.quantity === 0) {
+						soldOutProducts.push(product.name);
+						return size
+					}
+					return {
+						size: size.size,
+						quantity: size.quantity - 1
+					}
+				} else {
+					return size
+				}
+			});
 
 			products[product.productId] = {
 				id: product.productId,
@@ -76,7 +76,7 @@ export const orderProduct = (productsInCart, price) => {
 
 			batch.update(
 				productsRef.doc(product.productId),
-				{sizes: "aa"}
+				{sizes: updateSizes}
 			);
 
 			batch.delete(
