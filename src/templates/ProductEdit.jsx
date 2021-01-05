@@ -88,7 +88,7 @@ const ProductEdit = () => {
                     onChange={inputPrice} rows={1} value={price} type={"number"}
                 />
                 <div className="module-spacer--small"/>
-                {/* <SetSizesArea sizes={sizes} setSizes={setSizes} /> */}
+                <SetSizesArea sizes={sizes} setSizes={setSizes} />
                 <div className="module-spacer--small" />
                 <div className="center">
                     <PrimaryButton

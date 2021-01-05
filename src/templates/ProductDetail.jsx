@@ -54,22 +54,9 @@ const ProductDetail = () => {
         })
     },[])
 
-    // const addProduct = useCallback((selectedSize) => {
-    //     alert("aa");
-    //   const timestamp = FirebaseTimestamp.now()
-    //   dispatch(addProductToCart({
-    //     added_at: timestamp,
-    //     description: product.description,
-    //     images: product.images,
-    //     name: product.name,
-    //     price: product.price,
-    //     productId: product.id,
-    //     quantity: 1,
-    //     size: selectedSize
-    //   }))
-    // }, [product])
-    const addProduct = ()=> {
-			const timestamp = FirebaseTimestamp.now()
+    const addProduct = useCallback((selectedSize) => {
+        alert("aa");
+      const timestamp = FirebaseTimestamp.now()
       dispatch(addProductToCart({
         added_at: timestamp,
         description: product.description,
@@ -77,9 +64,10 @@ const ProductDetail = () => {
         name: product.name,
         price: product.price,
         productId: product.id,
-        quantity: 1
+        quantity: 1,
+        size: selectedSize
       }))
-    }
+    }, [product])
 
     return (
         <section className="c-section-wrapin">
@@ -92,7 +80,8 @@ const ProductDetail = () => {
                         <h2 className="u-text__headline">{product.name}</h2>
                         <p className={classes.price}>¥{(product.price).toLocaleString()}</p>
                         <div className="module-spacer--small"/>
-                        <button onClick={addProduct} >Add to cart</button>
+                        {/* <button onClick={addProduct} sizes={product.sizes} >Add to cart</button> */}
+                        <SizeTable addProduct={addProduct} sizes={product.sizes} />
                         <div className="module-spacer--small"/>
                         <p>{returnCodeToBr(product.description)}</p>
                     </div>

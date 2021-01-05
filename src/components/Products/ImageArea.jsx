@@ -21,7 +21,7 @@ const ImageArea = (props) => {
     const images = props.images;
 
     const deleteImage = useCallback(async (id) => {
-        const ret = window.confirm('この画像を削除しますか？')
+        const ret = window.confirm('Do you want to delete this item?')
         if (!ret) {
             return false
         } else {

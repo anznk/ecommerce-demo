@@ -11,24 +11,25 @@ import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
     iconCell: {
-        padding: 0,
-        height: 48,
-        width: 48
+      padding: 0,
+      height: 48,
+      width: 48
     }
 })
 
 const SizeTable = (props) => {
   const classes = useStyles()
-
+// console.log("sixe", props.sizes);
   return (
     <TableContainer>
       <Table aria-label="simple table">
         <TableBody>
+        
           {props.sizes.length > 0 && (
             props.sizes.map((item, index) => (
               <TableRow key={item.size}>
                 <TableCell component="th" scope="row">{item.size}</TableCell>
-                <TableCell>残り{item.quantity}点</TableCell>
+                <TableCell>{item.quantity}Left</TableCell>
                 <TableCell className={classes.iconCell}>
                   {item.quantity > 0 ? (
                     <IconButton
@@ -38,7 +39,7 @@ const SizeTable = (props) => {
                       <ShoppingCartIcon />
                     </IconButton>
                   ) : (
-                    <div>売切</div>
+                    <div>Sold</div>
                   )}
                 </TableCell>
                 <TableCell className={classes.iconCell}>
