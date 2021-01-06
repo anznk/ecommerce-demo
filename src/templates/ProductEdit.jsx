@@ -18,7 +18,7 @@ const ProductEdit = () => {
     //     {id: "female", name: "レディース"}
     // ];
 
-    const [name, setName] = useState(""),
+    const [names, setNames] = useState(""),
           [description, setDescription] = useState(""),
           [images, setImages] = useState([]),
           [category, setCategory] = useState(""),
@@ -28,8 +28,8 @@ const ProductEdit = () => {
           [sizes, setSizes] = useState([]);
 
     const inputName = useCallback((event) => {
-        setName(event.target.value)
-    }, [setName])
+        setNames(event.target.value)
+    }, [setNames])
 
     const inputDescription = useCallback((event) => {
         setDescription(event.target.value)
@@ -43,7 +43,7 @@ const ProductEdit = () => {
         if (id !== "") {
             db.collection('products').doc(id).get().then(snapshot => {
                 const product = snapshot.data()
-                setName(product.name)
+                setNames(product.name)
                 setDescription(product.description)
                 setImages(product.images)
                 setCategory(product.category)
@@ -66,34 +66,44 @@ const ProductEdit = () => {
 
     return (
         <section>
+
             <h2 className="u-text__headline u-text-center">Edit products</h2>
             <div className="c-section-container">
                 <ImageArea images={images} setImages={setImages} />
+
+            {names &&
                 <TextInput
                     fullWidth={true} label={"Name"} multiline={false} required={true}
-                    onChange={inputName} rows={1} value={name} type={"text"}
+                    onChange={inputName} rows={1} value={names} type={"text"}
                 />
+            }
+            {description &&
                 <TextInput
                     fullWidth={true} label={"detail"} multiline={true} required={true}
                     onChange={inputDescription} rows={5} value={description} type={"text"}
                 />
+            }
+            {category &&
                 <SelectBox
                     label={"Category"} options={categories} required={true} select={setCategory} value={category}
                 />
+            }
                 {/* <SelectBox
                     label={"Gender"} options={genders} required={true} select={setGender} value={gender}
                 /> */}
+            {price &&
                 <TextInput
                     fullWidth={true} label={"Price"} multiline={false} required={true}
                     onChange={inputPrice} rows={1} value={price} type={"number"}
                 />
+            }
                 <div className="module-spacer--small"/>
                 <SetSizesArea sizes={sizes} setSizes={setSizes} />
                 <div className="module-spacer--small" />
                 <div className="center">
                     <PrimaryButton
                         label={"Save"}
-                        onClick={() => dispatch(saveProduct(id, name, description, category, gender, price, sizes, images))}
+                        onClick={() => dispatch(saveProduct(id, names, description, category, gender, price, sizes, images))}
                     />
                 </div>
             </div>
