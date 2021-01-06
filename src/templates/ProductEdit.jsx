@@ -12,24 +12,17 @@ const ProductEdit = () => {
         id = id.split('/')[1]
     }
 
-    // const genders = [
-    //     {id: "all", name: "すべて"},
-    //     {id: "male", name: "メンズ"},
-    //     {id: "female", name: "レディース"}
-    // ];
-
-    const [names, setNames] = useState(""),
+    const [name, setName] = useState(""),
           [description, setDescription] = useState(""),
           [images, setImages] = useState([]),
           [category, setCategory] = useState(""),
           [categories, setCategories] = useState([]),
-          [gender, setGender] = useState(""),
           [price, setPrice] = useState(""),
           [sizes, setSizes] = useState([]);
 
     const inputName = useCallback((event) => {
-        setNames(event.target.value)
-    }, [setNames])
+        setName(event.target.value)
+    }, [setName])
 
     const inputDescription = useCallback((event) => {
         setDescription(event.target.value)
@@ -43,11 +36,9 @@ const ProductEdit = () => {
         if (id !== "") {
             db.collection('products').doc(id).get().then(snapshot => {
                 const product = snapshot.data()
-                setNames(product.name)
+                setName(product.name)
                 setDescription(product.description)
                 setImages(product.images)
-                setCategory(product.category)
-                setGender(product.gender)
                 setPrice(product.price)
                 setSizes(product.sizes)
             })
@@ -55,13 +46,13 @@ const ProductEdit = () => {
     },[id])
 
     useEffect(() => {
-        db.collection('categories').orderBy("order", "asc").get().then(snapshots => {
-            const list = []
-            snapshots.forEach(snapshot => {
-                list.push(snapshot.data())
-            })
-            setCategories(list)
-        });
+        // db.collection('categories').orderBy("order", "asc").get().then(snapshots => {
+        //     const list = []
+        //     snapshots.forEach(snapshot => {
+        //         list.push(snapshot.data())
+        //     })
+        //     setCategories(list)
+        // });
     },[])
 
     return (
@@ -69,12 +60,13 @@ const ProductEdit = () => {
 
             <h2 className="u-text__headline u-text-center">Edit products</h2>
             <div className="c-section-container">
+            {images &&
                 <ImageArea images={images} setImages={setImages} />
-
-            {names &&
+            }
+            {name &&
                 <TextInput
                     fullWidth={true} label={"Name"} multiline={false} required={true}
-                    onChange={inputName} rows={1} value={names} type={"text"}
+                    onChange={inputName} rows={1} value={name} type={"text"}
                 />
             }
             {description &&
@@ -88,9 +80,6 @@ const ProductEdit = () => {
                     label={"Category"} options={categories} required={true} select={setCategory} value={category}
                 />
             }
-                {/* <SelectBox
-                    label={"Gender"} options={genders} required={true} select={setGender} value={gender}
-                /> */}
             {price &&
                 <TextInput
                     fullWidth={true} label={"Price"} multiline={false} required={true}
@@ -103,7 +92,7 @@ const ProductEdit = () => {
                 <div className="center">
                     <PrimaryButton
                         label={"Save"}
-                        onClick={() => dispatch(saveProduct(id, names, description, category, gender, price, sizes, images))}
+                        onClick={() => dispatch(saveProduct(id, name, description, category, price, sizes, images))}
                     />
                 </div>
             </div>

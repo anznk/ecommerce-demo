@@ -118,14 +118,14 @@ export const orderProduct = (productsInCart, price) => {
 	}
 }
 
-export const saveProduct = (id, name, description, category, season, price, sizes, images) => {
+export const saveProduct = (id, name, description, category, price, sizes, images) => {
+	
 	return async (dispatch) => {
 		const timestamp = FirebaseTimestamp.now();
 
 		const data = {
 			category: category,
 			description: description,
-			season: season,
 			images: images,
 			name: name,
 			price: parseInt(price, 10),
@@ -139,6 +139,7 @@ export const saveProduct = (id, name, description, category, season, price, size
 			id = ref.id;
 			data.id = id;
 		}
+		console.log("data",data);
 
 		return productsRef.doc(id).set(data, {merge: true})
 			.then(() => {
