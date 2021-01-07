@@ -21,38 +21,40 @@ const SizeTable = (props) => {
   const classes = useStyles()
 // console.log("sixe", props.sizes);
   return (
-    <TableContainer>
-      <Table aria-label="simple table">
-        <TableBody>
+    // <div>
+    // {props.sizes.length > 0 && (
+    //   props.sizes.map((item, index) => (
+    //     <div key={item.size}>
+    //       {/* {item.quantity > 0 && ( */}
+    //       <p>{item.size}</p>
+    //       <p>{item.quantity}</p>
+    //       {/* )} */}
+    //     </div>
         
-          {props.sizes.length > 0 && (
-            props.sizes.map((item, index) => (
-              <TableRow key={item.size}>
-                <TableCell component="th" scope="row">{item.size}</TableCell>
-                <TableCell>{item.quantity}Left</TableCell>
-                <TableCell className={classes.iconCell}>
-                  {item.quantity > 0 ? (
-                    <IconButton
-                      className={classes.iconCell}
-                      onClick={() => props.addProduct(item.size)}
-                    >
-                      <ShoppingCartIcon />
-                    </IconButton>
-                  ) : (
-                    <div>Sold</div>
-                  )}
-                </TableCell>
-                <TableCell className={classes.iconCell}>
-                  <IconButton className={classes.iconCell}>
-                    <FavoriteBorderIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))
+    //   )
+    // )}
+    // </div>
+
+
+            // <div key={item.size}>
+            //   <p>{item.size}</p>
+            //   <p>{item.quantity}</p>
+            // </div>
+    <div>      
+      {props.sizes.length > 0 && (
+        props.sizes.map((item, index) => (
+          <div>
+          {item.quantity > 0 ? (
+              <p>
+                  {item.quantity}
+              </p>
+          ) : (
+              <div>売切</div>
           )}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </div>
+        ))
+      )}
+    </div>
   );
 };
 

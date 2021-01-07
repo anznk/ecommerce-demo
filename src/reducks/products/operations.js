@@ -139,7 +139,6 @@ export const saveProduct = (id, name, description, category, price, sizes, image
 			id = ref.id;
 			data.id = id;
 		}
-		console.log("data",data);
 
 		return productsRef.doc(id).set(data, {merge: true})
 			.then(() => {

@@ -92,23 +92,18 @@ const SetSizesArea = (props) => {
                             props.sizes.map((item, index) => (
                                 <TableRow key={item.size}>
                                     <TableCell component="th" scope="row">{item.size}</TableCell>
-                                    <TableCell>{item.quantity}</TableCell>
-                                    <TableCell className={classes.iconCell}>
-                                        <IconButton className={classes.iconCell} onClick={() => editSize(index, item.size, item.quantity)}>
-                                            <EditIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                    <TableCell className={classes.iconCell}>
-                                        <IconButton className={classes.iconCell} onClick={() => deleteSize(index)}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </TableCell>
+                                    
+                                    <TextInput
+                                        fullWidth={false} multiline={false} required={true}
+                                        onChange={inputQuantity} rows={1} value={item.quantity} type={"number"}
+                                    />
+ 
                                 </TableRow>
                             ))
                         )}
                     </TableBody>
                 </Table>
-                <div>
+                {/* <div>
                     <TextInput
                         fullWidth={false} label={"Size"} multiline={false} required={true}
                         onChange={inputSize} rows={1} value={size} type={"text"}
@@ -117,7 +112,7 @@ const SetSizesArea = (props) => {
                         fullWidth={false} label={"Quantity"} multiline={false} required={true}
                         onChange={inputQuantity} rows={1} value={quantity} type={"number"}
                     />
-                </div>
+                </div> */}
                 <IconButton className={classes.checkIcon} onClick={() => addSize(index, size, quantity)}>
                     <CheckCircleIcon/>
                 </IconButton>
