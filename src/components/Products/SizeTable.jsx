@@ -19,41 +19,18 @@ const useStyles = makeStyles({
 
 const SizeTable = (props) => {
   const classes = useStyles()
-// console.log("sixe", props.sizes);
+  
+
   return (
-    // <div>
-    // {props.sizes.length > 0 && (
-    //   props.sizes.map((item, index) => (
-    //     <div key={item.size}>
-    //       {/* {item.quantity > 0 && ( */}
-    //       <p>{item.size}</p>
-    //       <p>{item.quantity}</p>
-    //       {/* )} */}
-    //     </div>
-        
-    //   )
-    // )}
-    // </div>
-
-
-            // <div key={item.size}>
-            //   <p>{item.size}</p>
-            //   <p>{item.quantity}</p>
-            // </div>
     <div>      
-      {props.sizes.length > 0 && (
-        props.sizes.map((item, index) => (
-          <div>
-          {item.quantity > 0 ? (
-              <p>
-                  {item.quantity}
-              </p>
-          ) : (
-              <div>売切</div>
-          )}
-          </div>
-        ))
-      )}
+      {props.sizes.map((item, index) => (
+        <div>
+        {item.quantity > 0 && (
+            <button onClick={() => props.addProduct(item.size)}>{item.size}</button>
+        )}
+        </div>
+      ))
+      }
     </div>
   );
 };
