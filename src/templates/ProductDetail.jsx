@@ -46,6 +46,7 @@ const ProductDetail = () => {
     const id = path.split('/product/')[1]
 
     const [product, setProduct] = useState(null);
+    const [selectedSize, setSelectedSize] = useState("");
 
     useEffect(() => {
         db.collection('products').doc(id).get().then(doc => {
@@ -54,7 +55,7 @@ const ProductDetail = () => {
         })
     },[])
 
-    const addProduct = useCallback((selectedSize) => {
+    const addProduct = useCallback((size) => {
 
       const timestamp = FirebaseTimestamp.now()
       dispatch(addProductToCart({
@@ -65,8 +66,11 @@ const ProductDetail = () => {
         price: product.price,
         productId: product.id,
         quantity: 1,
-        size: selectedSize
+        size: size
       }))
+    }, [product])
+    const addSize = useCallback((size) => {
+        setSelectedSize(size);
     }, [product])
 
     return (
@@ -82,10 +86,12 @@ const ProductDetail = () => {
                         <div className="module-spacer--small"/>
                     
                         <p>Size</p>
-                        <SizeTable addProduct={addProduct} sizes={product.sizes} />
+                        <SizeTable addSize={addSize} sizes={product.sizes} />
+
                         
                         <div className="module-spacer--small"/>
                         <p>{returnCodeToBr(product.description)}</p>
+                        <button onClick={() => addProduct(selectedSize)}> Add cart </button>
                     </div>
                 </div>
             )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
@@ -18,19 +18,78 @@ const useStyles = makeStyles({
 })
 
 const SizeTable = (props) => {
+  const [selectedS, setSelectedS] = useState(false);
+  const [selectedM, setSelectedM] = useState(false);
+  const [selectedL, setSelectedL] = useState(false);
+  const ChangedSize = (size) => {
+    if(size === "S"){
+      setSelectedM(false);
+      setSelectedL(false);
+      setSelectedS(true);
+    } else if(size === "M"){
+      setSelectedL(false);
+      setSelectedS(false);
+      setSelectedM(true);
+    } else {
+      setSelectedS(false);
+      setSelectedM(false);
+      setSelectedL(true);
+    }
+    
+    props.addSize(size);
+  }
   const classes = useStyles()
   
-
+  
   return (
     <div>      
-      {props.sizes.map((item, index) => (
+    
+    {props.sizes[0].quantity >0 && (
+      <button
+        style={{
+          background:
+            selectedS === true
+            ? "#248"
+            : "#FFF"
+        }}
+        onClick={() => ChangedSize(props.sizes[0].size)}
+      >{props.sizes[0].size}</button>
+    )}
+    {props.sizes[1].quantity >0 && (
+      <button
+        style={{
+          background:
+            selectedM === true
+            ? "#248"
+            : "#FFF"
+        }}
+        onClick={() => ChangedSize(props.sizes[1].size)}
+      >{props.sizes[1].size}</button>
+    )}
+    {props.sizes[2].quantity >0 && (
+      <button
+        style={{
+          background:
+            selectedL === true
+            ? "#248"
+            : "#FFF"
+        }}
+        onClick={() => ChangedSize(props.sizes[2].size)}
+      >{props.sizes[2].size}</button>
+    )}
+
+
+      {/* {props.sizes.map((item, index) => (
         <div>
         {item.quantity > 0 && (
-            <button onClick={() => props.addProduct(item.size)}>{item.size}</button>
+            <button 
+              
+              onClick={() => ChangedSize(item.size)}>{item.size}</button>
         )}
         </div>
+        onClick={() => props.addSize(item.size)}>{item.size}</button>
       ))
-      }
+      } */}
     </div>
   );
 };
