@@ -3,7 +3,7 @@ import {db} from '../firebase/index'
 import {PrimaryButton, SelectBox, TextInput} from "../components/UIkit";
 import {useDispatch} from "react-redux";
 import {saveProduct} from "../reducks/products/operations";
-import {ImageArea, SetSizesArea} from "../components/Products";
+import {ImageArea, EditSizesArea} from "../components/Products";
 
 const ProductEdit = () => {
     const dispatch = useDispatch();
@@ -87,8 +87,7 @@ const ProductEdit = () => {
                 />
             }
                 <div className="module-spacer--small"/>
-                <SetSizesArea sizes={sizes} setSizes={setSizes} />
-                <p>ss{sizes.S}</p>                
+                <EditSizesArea sizes={sizes} setSizes={setSizes} />                
                 <div className="module-spacer--small" />
                 <div className="center">
                     <PrimaryButton
