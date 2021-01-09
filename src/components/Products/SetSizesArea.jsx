@@ -152,9 +152,6 @@ const SetSizesArea = (props) => {
                     <CheckCircleIcon/>
                 </IconButton>
             </TableContainer>
-						<p>quantityS{quantityS}</p>
-						<p>{quantityM}</p>
-						<p>{quantityL}</p>
             <div className="module-spacer--small"/>
         </div>
     );
