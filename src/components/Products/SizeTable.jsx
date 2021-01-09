@@ -77,19 +77,6 @@ const SizeTable = (props) => {
         onClick={() => ChangedSize(props.sizes[2].size)}
       >{props.sizes[2].size}</button>
     )}
-
-
-      {/* {props.sizes.map((item, index) => (
-        <div>
-        {item.quantity > 0 && (
-            <button 
-              
-              onClick={() => ChangedSize(item.size)}>{item.size}</button>
-        )}
-        </div>
-        onClick={() => props.addSize(item.size)}>{item.size}</button>
-      ))
-      } */}
     </div>
   );
 };

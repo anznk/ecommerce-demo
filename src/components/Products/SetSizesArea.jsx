@@ -26,53 +26,76 @@ const useStyles = makeStyles({
 
 const SetSizesArea = (props) => {
     const classes = useStyles()
-
+		const [quantity, setQuantity] = useState({
+			S: 0,
+			M: 0,
+			L: 0
+		});
     const [index, setIndex] = useState(0),
-          [size, setSize] = useState(""),
-          [quantity, setQuantity] = useState(0);
+          // [size, setSize] = useState(""),
+          [quantityS, setQuantityS] = useState(0),
+					[quantityM, setQuantityM] = useState(0),
+					[quantityL, setQuantityL] = useState(0);
 
-    const inputSize = useCallback((event) => {
-        setSize(event.target.value)
-    }, [setSize]);
+    // const inputSize = useCallback((event) => {
+    //     setSize(event.target.value)
+    // }, [setSize]);
 
     const inputQuantity = useCallback((event) => {
-        setQuantity(event.target.value)
-    }, [setQuantity]);
+			const target = event.target;
+			const value = target.value;
+			const name = target.name;
+			if(name === "S"){
+				setQuantityS(value);
+			} else if(name === "M"){
+				setQuantityM(value);
+			} else {
+				setQuantityL(value);
+			}    
+    }, []);
 
-    const addSize = (index, size, quantity) => {
-        if (size === "" || quantity === 0) {
-            // Required input is blank
-            return false
-        } else {
-            if (index === props.sizes.length) {
-                props.setSizes(prevState => [...prevState, {size: size, quantity: quantity}]);
-                setIndex(index + 1);
-                setSize("");
-                setQuantity(0)
-            } else {
-                const newSizes = props.sizes;
-                newSizes[index] = {size: size, quantity: quantity};
-                props.setSizes(newSizes);
-                setIndex(newSizes.length);
-                setSize("");
-                setQuantity(0);
-            }
-        }
+    const addSize = (quantityS, quantityM, quantityL) => {
+			props.setSizes(prevState => [ 
+			{size: "S", quantity: quantityS},
+			{size: "M", quantity: quantityM},
+			{size: "L", quantity: quantityL},
+			])
+			
+			
+			// setValues({ ...values, [name]: value });
+        // if (size === "" || quantity === 0) {
+        //     // Required input is blank
+        //     return false
+        // } else {
+        //     if (index === props.sizes.length) {
+        //         props.setSizes(prevState => [...prevState, {size: size, quantity: quantity}]);
+        //         // setIndex(index + 1);
+        //         setSize("");
+        //         setQuantity(0)
+        //     } else {
+        //         const newSizes = props.sizes;
+        //         // newSizes[index] = {size: size, quantity: quantity};
+        //         props.setSizes(newSizes);
+        //         // setIndex(newSizes.length);
+        //         setSize("");
+        //         setQuantity(0);
+        //     }
+        // }
     }
 
     const editSize = (index, size, quantity) => {
-        setIndex(index)
-        setSize(size)
+        // setIndex(index)
+        // setSize(size)
         setQuantity(quantity)
     }
 
     const deleteSize = (deleteIndex) => {
         const newSizes = props.sizes.filter((item, index) => index !== deleteIndex)
-        props.setSizes(newSizes);
+        // props.setSizes(newSizes);
     }
 
     useEffect(() => {
-        setIndex(props.sizes.length)
+        // setIndex(props.sizes.length)
     },[props.sizes.length])
 
     return (
@@ -83,40 +106,55 @@ const SetSizesArea = (props) => {
                         <TableRow>
                             <TableCell>Size</TableCell>
                             <TableCell>Quantity</TableCell>
-                            <TableCell className={classes.iconCell} />
-                            <TableCell className={classes.iconCell} />
+                            {/* <TableCell className={classes.iconCell} />
+                            <TableCell className={classes.iconCell} /> */}
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    {/* <TableBody>
                         {props.sizes.length > 0 && (
                             props.sizes.map((item, index) => (
                                 <TableRow key={item.size}>
                                     <TableCell component="th" scope="row">{item.size}</TableCell>
-                                    
-                                    <TextInput
-                                        fullWidth={false} multiline={false} required={true}
-                                        onChange={inputQuantity} rows={1} value={item.quantity} type={"number"}
-                                    />
- 
+                                    <TableCell>{item.quantity}</TableCell>
+                                    <TableCell className={classes.iconCell}>
+                                        <IconButton className={classes.iconCell} onClick={() => editSize(index, item.size, item.quantity)}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                    <TableCell className={classes.iconCell}>
+                                        <IconButton className={classes.iconCell} onClick={() => deleteSize(index)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </TableCell>
                                 </TableRow>
                             ))
                         )}
-                    </TableBody>
+                    </TableBody> */}
                 </Table>
-                {/* <div>
-                    <TextInput
-                        fullWidth={false} label={"Size"} multiline={false} required={true}
-                        onChange={inputSize} rows={1} value={size} type={"text"}
-                    />
+                <div>
+<p>S</p>
                     <TextInput
                         fullWidth={false} label={"Quantity"} multiline={false} required={true}
-                        onChange={inputQuantity} rows={1} value={quantity} type={"number"}
+                        onChange={inputQuantity} rows={1} name="S" value={quantityS} type={"number"}
                     />
-                </div> */}
-                <IconButton className={classes.checkIcon} onClick={() => addSize(index, size, quantity)}>
+<p>M</p>
+                    <TextInput
+                        fullWidth={false} label={"Quantity"} multiline={false} required={true}
+                        onChange={inputQuantity} rows={1} name="M"  value={quantityM} type={"number"}
+                    />
+<p>L</p>
+                    <TextInput
+                        fullWidth={false} label={"Quantity"} multiline={false} required={true}
+                        onChange={inputQuantity} rows={1} name="L"  value={quantityL} type={"number"}
+                    />
+                </div>
+                <IconButton className={classes.checkIcon} onClick={() => addSize(quantityS, quantityM, quantityL)}>
                     <CheckCircleIcon/>
                 </IconButton>
             </TableContainer>
+						<p>quantityS{quantityS}</p>
+						<p>{quantityM}</p>
+						<p>{quantityL}</p>
             <div className="module-spacer--small"/>
         </div>
     );

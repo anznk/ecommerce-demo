@@ -10,7 +10,8 @@ const TextInput = (props) =>{
       margin="dense"
       multiline={props.multiline}
       required={props.required}
-      rpws={props.rows}
+      rows={props.rows}
+      name={props.name}
       defaultValue={props.value}
       type={props.type}
       onChange={props.onChange}

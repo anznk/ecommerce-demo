@@ -88,6 +88,7 @@ const ProductEdit = () => {
             }
                 <div className="module-spacer--small"/>
                 <SetSizesArea sizes={sizes} setSizes={setSizes} />
+                <p>{sizes.S}</p>                
                 <div className="module-spacer--small" />
                 <div className="center">
                     <PrimaryButton

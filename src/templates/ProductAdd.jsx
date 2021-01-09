@@ -58,7 +58,7 @@ const ProductAdd = () => {
     return (
         <section>
 
-            <h2 className="u-text__headline u-text-center">Edit products</h2>
+            <h2 className="u-text__headline u-text-center">Add products</h2>
             <div className="c-section-container">
             
                 <ImageArea images={images} setImages={setImages} />

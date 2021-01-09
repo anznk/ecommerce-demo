@@ -87,8 +87,6 @@ const ProductDetail = () => {
                     
                         <p>Size</p>
                         <SizeTable addSize={addSize} sizes={product.sizes} />
-
-                        
                         <div className="module-spacer--small"/>
                         <p>{returnCodeToBr(product.description)}</p>
                         <button onClick={() => addProduct(selectedSize)}> Add cart </button>
