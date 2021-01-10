@@ -56,13 +56,22 @@ const EditSizesArea = (props) => {
     }, [setQuantity]);
 
     const addSize = (quantityS, quantityM, quantityL) => {
-			if (quantityS === "") {
-				setQuantityS(props.sizes[0].quantity);
-			} else if (quantityM === "") {
-				setQuantityM(props.sizes[1].quantity);
-			} else if (quantityL === "") {
-				setQuantityL(props.sizes[2].quantity);
+			if(props.sizes.length > 0){
+				alert("in");
+				alert("ss",props.sizes[0].quantity);
+				if (quantityS === 0) {
+					setQuantityS(props.sizes[0].quantity);
+				} else if (quantityM === 0) {
+					setQuantityM(props.sizes[1].quantity);
+				} else if (quantityL === 0) {
+					setQuantityL(props.sizes[2].quantity);
+				}
+
 			}
+
+			setEditSFlg(false);
+			setEditMFlg(false);
+			setEditLFlg(false);
 			props.setSizes(prevState => [ 
 				{size: "S", quantity: quantityS},
 				{size: "M", quantity: quantityM},
@@ -97,9 +106,8 @@ const EditSizesArea = (props) => {
                             <TableCell className={classes.iconCell} /> */}
                         </TableRow>
                     </TableHead>
-                    <TableBody>
 										{props.sizes.length > 0 && (
-											<div>
+											<TableBody>
 											<TableRow>
 											<TableCell component="th" scope="row"> S </TableCell>
 											{editSFlg ? 
@@ -154,33 +162,8 @@ const EditSizesArea = (props) => {
 													</div>
 												}
 											</TableRow>
-											</div>
+											</TableBody>
 										)}
-
-
-
-                        {/* {props.sizes.length > 0 && (
-                            props.sizes.map((item, index) => (
-                                <TableRow key={item.size}>
-                                    <TableCell component="th" scope="row">{item.size}</TableCell>
-																		{editFlg ? 
-																			<input name="S" onChange={inputQuantity} value="" type={"number"} />
-																			 : <TableCell>{item.quantity}</TableCell>
-																		}
-                                    <TableCell className={classes.iconCell}>
-                                        <IconButton className={classes.iconCell} onClick={() => editSize(index, item.size, item.quantity)}>
-                                            <EditIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                    <TableCell className={classes.iconCell}>
-                                        <IconButton className={classes.iconCell} onClick={() => deleteSize(index)}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            ))
-                        )} */}
-                    </TableBody>
                 </Table>
                 <div>
                 </div>
