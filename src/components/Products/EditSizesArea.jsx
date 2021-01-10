@@ -25,17 +25,24 @@ const useStyles = makeStyles({
 })
 
 const EditSizesArea = (props) => {
-    const classes = useStyles()
+	let orgS, orgM, orgL;
+	if(props.sizes.length > 0){
+		orgS = props.sizes[0].quantity;
+		orgM = props.sizes[1].quantity;
+		orgL = props.sizes[2].quantity;
+	}
+	console.log("orgS",orgS);
+	const classes = useStyles()
 
-    const [index, setIndex] = useState(0),
-					[editSFlg, setEditSFlg] = useState(false),
-					[editMFlg, setEditMFlg] = useState(false),
-					[editLFlg, setEditLFlg] = useState(false),
-          [size, setSize] = useState(""),
-          [quantity, setQuantity] = useState(0),
-					[quantityS, setQuantityS] = useState(0),
-					[quantityM, setQuantityM] = useState(0),
-					[quantityL, setQuantityL] = useState(0);
+	const [index, setIndex] = useState(0),
+				[editSFlg, setEditSFlg] = useState(false),
+				[editMFlg, setEditMFlg] = useState(false),
+				[editLFlg, setEditLFlg] = useState(false),
+				[size, setSize] = useState(""),
+				[quantity, setQuantity] = useState(0),
+				[quantityS, setQuantityS] = useState(orgS),
+				[quantityM, setQuantityM] = useState(orgM),
+				[quantityL, setQuantityL] = useState(orgL);
 
     const inputSize = useCallback((event) => {
         setSize(event.target.value)
@@ -56,22 +63,27 @@ const EditSizesArea = (props) => {
     }, [setQuantity]);
 
     const addSize = (quantityS, quantityM, quantityL) => {
-			if(props.sizes.length > 0){
-				alert("in");
-				alert("ss",props.sizes[0].quantity);
-				if (quantityS === 0) {
-					setQuantityS(props.sizes[0].quantity);
-				} else if (quantityM === 0) {
-					setQuantityM(props.sizes[1].quantity);
-				} else if (quantityL === 0) {
-					setQuantityL(props.sizes[2].quantity);
-				}
+			
+			// if(props.sizes.length > 0){
+				
+				// console.log("ss",proS.quantity);
+			// 	if (quantityS === props.sizes[0].quantity) {
+			// 		console.log("in",quantityS);
+			// 		setQuantityS(props.sizes[0].quantity);
+			// 	} else if (quantityM === props.sizes[1].quantity) {
+			// 		setQuantityM(props.sizes[1].quantity);
+			// 	} else if (quantityL === props.sizes[2].quantity) {
+			// 		setQuantityL(props.sizes[2].quantity);
+			// 	}
 
-			}
+			// }
 
 			setEditSFlg(false);
 			setEditMFlg(false);
 			setEditLFlg(false);
+			console.log("quantityS",quantityS);
+			console.log("quantityM",quantityM);
+			console.log("quantityL",quantityL);
 			props.setSizes(prevState => [ 
 				{size: "S", quantity: quantityS},
 				{size: "M", quantity: quantityM},
@@ -117,7 +129,7 @@ const EditSizesArea = (props) => {
 												/>
 												: 
 												<div>
-												<TableCell>{props.sizes[0].quantity}</TableCell>
+												<TableCell>{orgS}</TableCell>
 													<TableCell className={classes.iconCell}>
 													<IconButton className={classes.iconCell} onClick={() => editSize("S")}>
 													<EditIcon />
@@ -135,7 +147,7 @@ const EditSizesArea = (props) => {
 													/>
 													: 
 													<div>
-													<TableCell>{props.sizes[1].quantity}</TableCell>
+													<TableCell>{orgM}</TableCell>
 														<TableCell className={classes.iconCell}>
 														<IconButton className={classes.iconCell} onClick={() => editSize("M")}>
 														<EditIcon />
@@ -153,7 +165,7 @@ const EditSizesArea = (props) => {
 													/>
 													: 
 													<div>
-													<TableCell>{props.sizes[2].quantity}</TableCell>
+													<TableCell>{orgL}</TableCell>
 														<TableCell className={classes.iconCell}>
 														<IconButton className={classes.iconCell} onClick={() => editSize("L")}>
 														<EditIcon />
