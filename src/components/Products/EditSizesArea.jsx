@@ -28,6 +28,7 @@ const EditSizesArea = (props) => {
     const classes = useStyles()
 
     const [index, setIndex] = useState(0),
+					[editFlg, setEditFlg] = useState(false),
           [size, setSize] = useState(""),
           [quantity, setQuantity] = useState(0);
 
@@ -61,9 +62,10 @@ const EditSizesArea = (props) => {
     }
 
     const editSize = (index, size, quantity) => {
-        setIndex(index)
-        setSize(size)
-        setQuantity(quantity)
+			setEditFlg(true);
+        // setIndex(index)
+        // setSize(size)
+        // setQuantity(quantity)
     }
 
     const deleteSize = (deleteIndex) => {
@@ -83,8 +85,8 @@ const EditSizesArea = (props) => {
                         <TableRow>
                             <TableCell>Size</TableCell>
                             <TableCell>Quantity</TableCell>
-                            <TableCell className={classes.iconCell} />
-                            <TableCell className={classes.iconCell} />
+                            {/* <TableCell className={classes.iconCell} />
+                            <TableCell className={classes.iconCell} /> */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -92,7 +94,11 @@ const EditSizesArea = (props) => {
                             props.sizes.map((item, index) => (
                                 <TableRow key={item.size}>
                                     <TableCell component="th" scope="row">{item.size}</TableCell>
-                                    <TableCell>{item.quantity}</TableCell>
+																		{editFlg ? 
+																			<input name="S" onChange={inputQuantity} value="" type={"number"} />
+
+																			 : <TableCell>{item.quantity}</TableCell>
+																		}
                                     <TableCell className={classes.iconCell}>
                                         <IconButton className={classes.iconCell} onClick={() => editSize(index, item.size, item.quantity)}>
                                             <EditIcon />
