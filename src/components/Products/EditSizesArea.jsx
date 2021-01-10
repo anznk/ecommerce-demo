@@ -28,55 +28,63 @@ const EditSizesArea = (props) => {
     const classes = useStyles()
 
     const [index, setIndex] = useState(0),
-					[editFlg, setEditFlg] = useState(false),
+					[editSFlg, setEditSFlg] = useState(false),
+					[editMFlg, setEditMFlg] = useState(false),
+					[editLFlg, setEditLFlg] = useState(false),
           [size, setSize] = useState(""),
-          [quantity, setQuantity] = useState(0);
+          [quantity, setQuantity] = useState(0),
+					[quantityS, setQuantityS] = useState(0),
+					[quantityM, setQuantityM] = useState(0),
+					[quantityL, setQuantityL] = useState(0);
 
     const inputSize = useCallback((event) => {
         setSize(event.target.value)
     }, [setSize]);
 
     const inputQuantity = useCallback((event) => {
-        setQuantity(event.target.value)
+			const target = event.target;
+			const value = target.value;
+			const name = target.name;
+			if(name === "S"){
+				setQuantityS(value);
+			} else if(name === "M"){
+				setQuantityM(value);
+			} else {
+				setQuantityL(value);
+			}  
+        // setQuantity(event.target.value)
     }, [setQuantity]);
 
-    const addSize = (index, size, quantity) => {
-        if (size === "" || quantity === 0) {
-            // Required input is blank
-            return false
-        } else {
-            if (index === props.sizes.length) {
-                props.setSizes(prevState => [...prevState, {size: size, quantity: quantity}]);
-                setIndex(index + 1);
-                setSize("");
-                setQuantity(0)
-            } else {
-                const newSizes = props.sizes;
-                newSizes[index] = {size: size, quantity: quantity};
-                props.setSizes(newSizes);
-                setIndex(newSizes.length);
-                setSize("");
-                setQuantity(0);
-            }
-        }
+    const addSize = (quantityS, quantityM, quantityL) => {
+			if (quantityS === "") {
+				setQuantityS(props.sizes[0].quantity);
+			} else if (quantityM === "") {
+				setQuantityM(props.sizes[1].quantity);
+			} else if (quantityL === "") {
+				setQuantityL(props.sizes[2].quantity);
+			}
+			props.setSizes(prevState => [ 
+				{size: "S", quantity: quantityS},
+				{size: "M", quantity: quantityM},
+				{size: "L", quantity: quantityL},
+			])
     }
 
-    const editSize = (index, size, quantity) => {
-			setEditFlg(true);
-        // setIndex(index)
-        // setSize(size)
-        // setQuantity(quantity)
+    const editSize = (size) => {
+			if(size === "S"){
+				setEditSFlg(true);
+			} else if(size === "M"){
+				setEditMFlg(true);
+			} else {
+				setEditLFlg(true);
+			}  
+			
     }
-
-    const deleteSize = (deleteIndex) => {
-        const newSizes = props.sizes.filter((item, index) => index !== deleteIndex)
-        props.setSizes(newSizes);
-    }
-
     useEffect(() => {
-        setIndex(props.sizes.length)
+			setIndex(props.sizes.length)
+				
     },[props.sizes.length])
-
+		// console.log("props",props.sizes[0].quantity);
     return (
         <div aria-label="サイズ展開">
             <TableContainer component={Paper}>
@@ -90,13 +98,73 @@ const EditSizesArea = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.sizes.length > 0 && (
+										{props.sizes.length > 0 && (
+											<div>
+											<TableRow>
+											<TableCell component="th" scope="row"> S </TableCell>
+											{editSFlg ? 
+												<TextInput
+														fullWidth={false} label={"Quantity"} multiline={false} required={true}
+														onChange={inputQuantity} rows={1} name="S" value={quantityS} type={"number"}
+												/>
+												: 
+												<div>
+												<TableCell>{props.sizes[0].quantity}</TableCell>
+													<TableCell className={classes.iconCell}>
+													<IconButton className={classes.iconCell} onClick={() => editSize("S")}>
+													<EditIcon />
+													</IconButton>
+												</TableCell>
+												</div>
+											}
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row"> M </TableCell>
+												{editMFlg ? 
+													<TextInput
+															fullWidth={false} label={"Quantity"} multiline={false} required={true}
+															onChange={inputQuantity} rows={1} name="M" value={quantityM} type={"number"}
+													/>
+													: 
+													<div>
+													<TableCell>{props.sizes[1].quantity}</TableCell>
+														<TableCell className={classes.iconCell}>
+														<IconButton className={classes.iconCell} onClick={() => editSize("M")}>
+														<EditIcon />
+														</IconButton>
+													</TableCell>
+													</div>
+												}
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row"> L </TableCell>
+												{editLFlg ? 
+													<TextInput
+															fullWidth={false} label={"Quantity"} multiline={false} required={true}
+															onChange={inputQuantity} rows={1} name="L" value={quantityL} type={"number"}
+													/>
+													: 
+													<div>
+													<TableCell>{props.sizes[2].quantity}</TableCell>
+														<TableCell className={classes.iconCell}>
+														<IconButton className={classes.iconCell} onClick={() => editSize("L")}>
+														<EditIcon />
+														</IconButton>
+													</TableCell>
+													</div>
+												}
+											</TableRow>
+											</div>
+										)}
+
+
+
+                        {/* {props.sizes.length > 0 && (
                             props.sizes.map((item, index) => (
                                 <TableRow key={item.size}>
                                     <TableCell component="th" scope="row">{item.size}</TableCell>
 																		{editFlg ? 
 																			<input name="S" onChange={inputQuantity} value="" type={"number"} />
-
 																			 : <TableCell>{item.quantity}</TableCell>
 																		}
                                     <TableCell className={classes.iconCell}>
@@ -111,12 +179,12 @@ const EditSizesArea = (props) => {
                                     </TableCell>
                                 </TableRow>
                             ))
-                        )}
+                        )} */}
                     </TableBody>
                 </Table>
                 <div>
                 </div>
-                <IconButton className={classes.checkIcon} onClick={() => addSize(index, size, quantity)}>
+                <IconButton className={classes.checkIcon} onClick={() => addSize(quantityS, quantityM, quantityL)}>
                     <CheckCircleIcon/>
                 </IconButton>
             </TableContainer>
