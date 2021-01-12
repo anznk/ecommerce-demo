@@ -39,7 +39,15 @@ const CartList = () => {
             </List>
             <div className="module-spacer--medium" />
             <div className="p-grid__column">
-                <button onClick={goToOrder} >Proceed to checkout</button>
+                <button 
+									style={{
+										border: "2px solid #000",
+										marginTop: "5rem",
+										cursor: "pointer",
+										padding:"1rem 3rem",
+										background:"#FFF"
+									}}
+                onClick={goToOrder} >Proceed to checkout</button>
                 <div className="module-spacer--extra-extra-small"/>
                 <button label={"continue to shopping"} onClick={backToTop} />
             </div>
