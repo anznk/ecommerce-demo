@@ -8,14 +8,28 @@ import TableContainer from "@material-ui/core/TableContainer";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {makeStyles} from "@material-ui/styles";
+import {createStyles} from "@material-ui/core";
 
-const useStyles = makeStyles({
-    iconCell: {
-      padding: 0,
-      height: 48,
-      width: 48
-    }
-})
+
+const useStyles = makeStyles((theme) =>
+    createStyles({
+      "iconCell": {
+        padding: 0,
+        height: 48,
+        width: 48
+      },
+      "sizesButton": {
+        border: '2px solid #000',
+        border_radius: 0,
+        background: '#fff',
+        "&:hover": {
+          color: '#fff',
+          backgroundColor: '#000'
+        }
+      }
+    })
+)
+
 
 const SizeTable = (props) => {
   const [selectedS, setSelectedS] = useState(false);
@@ -47,9 +61,14 @@ const SizeTable = (props) => {
     {props.sizes[0].quantity >0 && (
       <button
         style={{
+          border: "2px solid #000",
+          width:"3rem",
+          height:"3rem",
+          margin_right: "1rem",
+          border_radius: 0,
           background:
             selectedS === true
-            ? "#248"
+            ? "grey"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[0].size)}
@@ -58,9 +77,14 @@ const SizeTable = (props) => {
     {props.sizes[1].quantity >0 && (
       <button
         style={{
+          border: "2px solid #000",
+          width:"3rem",
+          height:"3rem",
+          margin: "1rem",
+          border_radius: 0,
           background:
             selectedM === true
-            ? "#248"
+            ? "grey"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[1].size)}
@@ -69,9 +93,14 @@ const SizeTable = (props) => {
     {props.sizes[2].quantity >0 && (
       <button
         style={{
+          border: "2px solid #000",
+          width:"3rem",
+          height:"3rem",
+          margin: "1rem",
+          border_radius: 0,
           background:
             selectedL === true
-            ? "#248"
+            ? "grey"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[2].size)}
