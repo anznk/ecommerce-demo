@@ -52,7 +52,7 @@ const PaymentEdit = () => {
         if (card.last4) {
             return "**** **** **** " + card.last4
         } else {
-            return "未登録"
+            return "No information"
         }
     },[card])
 
@@ -60,11 +60,12 @@ const PaymentEdit = () => {
         <section className="c-section-container">
             <h2 className="u-text__headline u-text-center">Add Payment infomation</h2>
             <div className="module-spacer--medium"/>
-            <h3>Credit Card Info</h3>
+            <h3>Current Credit Card Info</h3>
             <div className="module-spacer--small" />
             <TextDetail label={card.brand} value={cardNumber} key={card.id}/>
             <div className="module-spacer--small" />
-            <h3>Resister and Edit</h3>
+            <h3>{ cardNumber === "No information" ? 'Resister' : 'Edit' }</h3>
+
             <div className="module-spacer--small" />
             <CardElement
                 className={classes.element}
