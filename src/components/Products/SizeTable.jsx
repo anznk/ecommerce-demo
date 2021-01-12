@@ -68,7 +68,7 @@ const SizeTable = (props) => {
           border_radius: 0,
           background:
             selectedS === true
-            ? "grey"
+            ? "#D3D3D3"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[0].size)}
@@ -84,7 +84,7 @@ const SizeTable = (props) => {
           border_radius: 0,
           background:
             selectedM === true
-            ? "grey"
+            ? "#D3D3D3"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[1].size)}
@@ -100,7 +100,7 @@ const SizeTable = (props) => {
           border_radius: 0,
           background:
             selectedL === true
-            ? "grey"
+            ? "#D3D3D3"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[2].size)}
