@@ -64,7 +64,7 @@ const SizeTable = (props) => {
           border: "2px solid #000",
           width:"3rem",
           height:"3rem",
-          margin_right: "1rem",
+          marginRight: "1rem",
           border_radius: 0,
           background:
             selectedS === true
@@ -80,7 +80,7 @@ const SizeTable = (props) => {
           border: "2px solid #000",
           width:"3rem",
           height:"3rem",
-          margin: "1rem",
+          marginRight: "1rem",
           border_radius: 0,
           background:
             selectedM === true
@@ -96,7 +96,7 @@ const SizeTable = (props) => {
           border: "2px solid #000",
           width:"3rem",
           height:"3rem",
-          margin: "1rem",
+          marginRight:"1rem",
           border_radius: 0,
           background:
             selectedL === true
