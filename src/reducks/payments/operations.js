@@ -7,10 +7,11 @@ import {updateUserStateAction} from "../users/actions";
 // Set Header
 const headers = new Headers();
 headers.set('Content-type', 'application/json');
-const BASE_URL = 'https://ec-app-12ba0.web.app';
+const BASE_URL = 'http://localhost:3000';
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
-    const response = await fetch(BASE_URL + '/v1/customer', {
+
+    const response = await fetch('http://localhost:3000/customer', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
@@ -67,10 +68,10 @@ export const registerCard = (stripe, elements, customerId) => {
         // Create customer on Stripe
         if (customerId === "") {
             const customerData = await createCustomer(email, paymentMethodId, uid, username);
-
+            console.log("cus",customerData);
             if (!customerData.id) {
                 dispatch(hideLoadingAction());
-                alert('お客様情報の登録に失敗しました。');
+                alert('お客様情報の登録に失敗しました。1');
             } else {
                 const updateUserState = {
                     customer_id: customerData.id,
@@ -81,7 +82,7 @@ export const registerCard = (stripe, elements, customerId) => {
                     .then(() => {
                         dispatch(updateUserStateAction(updateUserState))
                         dispatch(hideLoadingAction());
-                        alert('お客様情報を登録しました。');
+                        alert('Failed to register');
                         dispatch(push('/user/mypage'))
                     }).catch(async (error) => {
                         console.error(error);
@@ -93,7 +94,7 @@ export const registerCard = (stripe, elements, customerId) => {
                         });
                         await deleteCustomer.json();
                         dispatch(hideLoadingAction());
-                        alert('お客様情報の登録に失敗しました。');
+                        alert('お客様情報の登録に失敗しました。2');
                     })
             }
         } else {
@@ -114,7 +115,7 @@ export const registerCard = (stripe, elements, customerId) => {
                         dispatch(push('/user/mypage'))
                     }).catch(() => {
                         dispatch(hideLoadingAction());
-                        alert('お客様情報の登録に失敗しました。');
+                        alert('お客様情報の登録に失敗しました。3');
                     })
             }
         }
@@ -122,7 +123,7 @@ export const registerCard = (stripe, elements, customerId) => {
 };
 
 export const retrievePaymentMethod = async (paymentMethodId) => {
-    const response = await fetch(BASE_URL + '/v1/paymentMethod', {
+    const response = await fetch('http://localhost:3000/order/confirm', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
@@ -136,7 +137,7 @@ export const retrievePaymentMethod = async (paymentMethodId) => {
 }
 
 export const updatePaymentMethod = async (customerId, prevPaymentMethodId, nextPaymentMethodId) => {
-    const response = await fetch(BASE_URL + '/v1/updatePaymentMethod', {
+    const response = await fetch('http://localhost:3000/paymentMethod/updatePaymentMethod', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({

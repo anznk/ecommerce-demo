@@ -39,6 +39,7 @@ const PaymentEdit = () => {
 
     useEffect(() => {
         (async() => {
+            console.log("1");
             dispatch(showLoadingAction());
             const paymentMethod = await retrievePaymentMethod(paymentMethodId)
             dispatch(hideLoadingAction());
