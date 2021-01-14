@@ -12,6 +12,7 @@ const SENDGRID_API_KEY = functions.config().process.env.KEY;
 
 // Send response when calling APIs
 const sendResponse = (response, statusCode, body) => {
+  console.log("aaa");
     response.send({
         statusCode,
         headers: { "Access-Control-Allow-Origin": "*" },
@@ -105,7 +106,7 @@ exports.sendThankYouMail = functions.https.onCall(async (data, context)=> {
     sendgrid.setApiKey(SENDGRID_API_KEY);
     const message = {
         to: data.email,
-        from: "torahack1492@gmail.com",
+        from: "anzunakayama@gmail.com",
         subject: "【Torashop】会員登録完了のお知らせ",
         html: body
     };

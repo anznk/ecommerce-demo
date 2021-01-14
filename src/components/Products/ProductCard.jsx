@@ -97,7 +97,7 @@ const ProductCard = (props) => {
                         {props.name}
                     </Typography>
                     <Typography className={classes.price} component="p">
-                        ¥{price}
+                        ${price}
                     </Typography>
                 </div>
                 {isAdministrator && (
