@@ -11,7 +11,7 @@ const BASE_URL = 'http://localhost:3000';
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
 
-    const response = await fetch('http://localhost:3000/customer', {
+    const response = await fetch('http://localhost:3000/createPaymentIntent', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
@@ -23,6 +23,7 @@ const createCustomer = async (email, paymentMethodId, uid, username) => {
     });
 
     const customerResponse = await response.json();
+    console.log("customerResponse",customerResponse);
     return JSON.parse(customerResponse.body);
 }
 
@@ -123,7 +124,7 @@ export const registerCard = (stripe, elements, customerId) => {
 };
 
 export const retrievePaymentMethod = async (paymentMethodId) => {
-    const response = await fetch('http://localhost:3000/order/confirm', {
+    const response = await fetch('http://localhost:3000/createPaymentIntent', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({

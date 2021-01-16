@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) =>
     createStyles({
       "iconCell": {
         padding: 0,
-        height: 48,
-        width: 48
+        height: 40,
+        width: 40
       },
       "sizesButton": {
         border: '2px solid #000',
@@ -62,8 +62,8 @@ const SizeTable = (props) => {
       <button
         style={{
           border: "2px solid #000",
-          width:"3rem",
-          height:"3rem",
+          width:"2rem",
+          height:"2rem",
           marginRight: "1rem",
           border_radius: 0,
           background:
@@ -78,8 +78,8 @@ const SizeTable = (props) => {
       <button
         style={{
           border: "2px solid #000",
-          width:"3rem",
-          height:"3rem",
+          width:"2rem",
+          height:"2rem",
           marginRight: "1rem",
           border_radius: 0,
           background:
@@ -94,8 +94,8 @@ const SizeTable = (props) => {
       <button
         style={{
           border: "2px solid #000",
-          width:"3rem",
-          height:"3rem",
+          width:"2rem",
+          height:"2rem",
           marginRight:"1rem",
           border_radius: 0,
           background:
