@@ -16,6 +16,7 @@ import {deleteProduct} from "../../reducks/products/operations";
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        cursor: 'pointer',
         [theme.breakpoints.down('sm')]: {
             margin: 8,
             width: 'calc(50% - 16px)'
@@ -86,10 +87,10 @@ const ProductCard = (props) => {
     return (
         <Card className={classes.root}>
             <CardMedia
-							className={classes.media}
-							image={images[0].path}
-							onClick={() => dispatch(push('/product/'+props.id))}
-							title=""
+                className={classes.media}
+                image={images[0].path}
+                onClick={() => dispatch(push('/product/'+props.id))}
+                title=""
             />
             <CardContent className={classes.content}>
                 <div onClick={() => dispatch(push('/product/'+props.id))}>
