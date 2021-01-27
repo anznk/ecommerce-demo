@@ -1,0 +1,32 @@
+  $widthS: 16px;
+  $widthM: 32px;
+
+
+  .sliderBox {
+    @media screen and (max-width: 600px) {
+      margin: 0 auto 24px auto;
+      height: 320px;
+      width: 320px;
+    }
+    @media screen and (min-width: 600px) {
+      margin: 0 auto;
+      height: 400px;
+      width: 400px;
+    }
+  }
+  .detail {
+    text-align: left;
+    @media screen and (max-width: 600px) {
+        margin: 0 auto 16px auto;
+        height: 320px;
+        width: 320px;
+    }
+    @media screen and (min-width: 600px) {
+        margin: 0 auto;
+        height: auto;
+        width: 400px;
+    }
+  }
+  .price {
+    font-size: 36px;
+  }

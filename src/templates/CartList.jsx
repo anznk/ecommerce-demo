@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {CartListItem} from "../components/Products";
 import {PrimaryButton, GreyButton} from "../components/UIkit";
 import {push} from "connected-react-router"
+import "../styles/cartList.scss"
 
 const useStyles = makeStyles((theme) => ({
     root: {
