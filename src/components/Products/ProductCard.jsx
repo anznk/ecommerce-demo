@@ -13,59 +13,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import {deleteProduct} from "../../reducks/products/operations";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        cursor: 'pointer',
-        [theme.breakpoints.down('sm')]: {
-            margin: 8,
-            width: 'calc(50% - 16px)'
-        },
-        [theme.breakpoints.up('md')]: {
-            margin: 16,
-            width: 'calc(33.3333% - 32px)'
-        }
-    },
-    content: {
-        display: 'flex',
-        padding: '16 8',
-        textAlign: 'left',
-        '&:last-child': {
-            paddingBottom: 16
-        }
-    },
-    icon: {
-        marginRight: 0,
-        marginLeft: 'auto'
-    },
-    media: {
-        height: 0,
-        paddingTop: '100%'
-    },
-    price: {
-        color: theme.palette.secondary.dark,
-        fontSize: 16
-
-    },
-    productName: {
-        boxOrient: 'vertical',
-        display: '-webkit-box',
-        fontSize: 14,
-        lineHeight: '18px',
-        overflow: 'hidden',
-        [theme.breakpoints.down('sm')]: {
-            height: 36,
-            lineClamp: 2,
-        },
-        [theme.breakpoints.up('md')]: {
-            height: 18,
-            lineClamp: 1,
-        }
-    }
-}));
+import '../../styles/productCard.scss';
 
 const ProductCard = (props) => {
-    const classes = useStyles();
+    
     const dispatch = useDispatch()
     const selector = useSelector(state => state);
     const userRole = getUserRole(selector)
@@ -85,25 +36,25 @@ const ProductCard = (props) => {
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className="root">
             <CardMedia
-                className={classes.media}
+                className= "media"
                 image={images[0].path}
                 onClick={() => dispatch(push('/product/'+props.id))}
                 title=""
             />
-            <CardContent className={classes.content}>
+            <CardContent className="content">
                 <div onClick={() => dispatch(push('/product/'+props.id))}>
-                    <Typography className={classes.productName} color="textSecondary" component="p">
+                    <Typography className="productName" color="textSecondary" component="p">
                         {props.name}
                     </Typography>
-                    <Typography className={classes.price} component="p">
+                    <Typography className="price" component="p">
                         ${price}
                     </Typography>
                 </div>
                 {isAdministrator && (
                     <>
-                        <IconButton className={classes.icon} onClick={handleClick}>
+                        <IconButton className= "icon" onClick={handleClick}>
                             <MoreVertIcon />
                         </IconButton>
                         <Menu
