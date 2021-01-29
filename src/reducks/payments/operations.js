@@ -7,11 +7,11 @@ import {updateUserStateAction} from "../users/actions";
 // Set Header
 const headers = new Headers();
 headers.set('Content-type', 'application/json');
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:5001/ecommerce-demo-84728/us-central1';
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
 
-    const response = await fetch('http://localhost:3000/createPaymentIntent', {
+    const response = await fetch(BASE_URL + '/v1/customer', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
@@ -124,21 +124,25 @@ export const registerCard = (stripe, elements, customerId) => {
 };
 
 export const retrievePaymentMethod = async (paymentMethodId) => {
-    const response = await fetch('http://localhost:3000/createPaymentIntent', {
+    
+    const response = await fetch(BASE_URL + '/retrievePaymentMethod/v1/paymentMethod', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
             paymentMethodId: paymentMethodId
         })
     });
+    // console.log("response", response);
 
     const cardResponse = await response.json();
+    console.log("cardResponse", cardResponse);
+    
     const paymentMethod = JSON.parse(cardResponse.body);
     return paymentMethod.card
 }
 
 export const updatePaymentMethod = async (customerId, prevPaymentMethodId, nextPaymentMethodId) => {
-    const response = await fetch('http://localhost:3000/paymentMethod/updatePaymentMethod', {
+    const response = await fetch(BASE_URL + '/v1/updatePaymentMethod', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({

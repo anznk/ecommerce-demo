@@ -39,9 +39,9 @@ const PaymentEdit = () => {
 
     useEffect(() => {
         (async() => {
-            console.log("1");
             dispatch(showLoadingAction());
             const paymentMethod = await retrievePaymentMethod(paymentMethodId)
+            console.log("paymentMethodId2", paymentMethod);
             dispatch(hideLoadingAction());
             if (paymentMethod) {
                 setCard(paymentMethod)
