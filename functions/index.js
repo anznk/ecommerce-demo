@@ -2,17 +2,18 @@ const functions = require('firebase-functions');
 const sendgrid = require('@sendgrid/mail');
 const cors = require('cors');
 const stripe = require('stripe')(functions.config().stripe.token);
+
 require('dotenv').config();
 
 /**
  * Configure environment variable with the following command
  * firebase functions:config:set sendgrid.key="YOUR_API_KEY"
  */
-const SENDGRID_API_KEY = functions.config().process.env.KEY;
+// const SENDGRID_API_KEY = functions.config().process.env.KEY;
+
 
 // Send response when calling APIs
 const sendResponse = (response, statusCode, body) => {
-  console.log("aaa");
     response.send({
         statusCode,
         headers: { "Access-Control-Allow-Origin": "*" },
@@ -23,8 +24,10 @@ const sendResponse = (response, statusCode, body) => {
 
 exports.retrievePaymentMethod = functions.https.onRequest((req, res) => {
     const corsHandler = cors({origin: true});
-
+    console.log("corsHandler", corsHandler);
+    const paymentMethodId = "pm_1EUmy7285d61s2cIVpEd0VdM";
     corsHandler(req, res, () => {
+        
         if (req.method !== 'POST') {
             sendResponse(res, 405, {error: "Invalid Request"})
         }
@@ -103,15 +106,15 @@ exports.sendThankYouMail = functions.https.onCall(async (data, context)=> {
                     HP: https://torahack.web.app
                   </p>`;
 
-    sendgrid.setApiKey(SENDGRID_API_KEY);
-    const message = {
-        to: data.email,
-        from: "anzunakayama@gmail.com",
-        subject: "【Torashop】会員登録完了のお知らせ",
-        html: body
-    };
-    await sendgrid.send(message);
-    return null
+    // sendgrid.setApiKey(SENDGRID_API_KEY);
+    // const message = {
+    //     to: data.email,
+    //     from: "anzunakayama@gmail.com",
+    //     subject: "【Torashop】会員登録完了のお知らせ",
+    //     html: body
+    // };
+    // await sendgrid.send(message);
+    // return null
 });
 
 exports.updatePaymentMethod = functions.https.onRequest((req, res) => {
