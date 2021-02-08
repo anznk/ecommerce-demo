@@ -1,15 +1,10 @@
 const functions = require('firebase-functions');
 const sendgrid = require('@sendgrid/mail');
 const cors = require('cors');
-const stripe = require('stripe')(functions.config().stripe.token);
+
 
 require('dotenv').config();
-
-/**
- * Configure environment variable with the following command
- * firebase functions:config:set sendgrid.key="YOUR_API_KEY"
- */
-// const SENDGRID_API_KEY = functions.config().process.env.KEY;
+const stripe = require('stripe')(process.env.REACT_APP_KEY);
 
 
 // Send response when calling APIs
@@ -21,11 +16,8 @@ const sendResponse = (response, statusCode, body) => {
     });
 };
 
-
 exports.retrievePaymentMethod = functions.https.onRequest((req, res) => {
     const corsHandler = cors({origin: true});
-    console.log("corsHandler", corsHandler);
-    const paymentMethodId = "pm_1EUmy7285d61s2cIVpEd0VdM";
     corsHandler(req, res, () => {
         
         if (req.method !== 'POST') {
@@ -81,42 +73,6 @@ exports.stripeCustomer = functions.https.onRequest((req, res) => {
     })
 })
 
-exports.sendThankYouMail = functions.https.onCall(async (data, context)=> {
-    const body = `<p>${data.username}様</p>
-                  <p>Torashopの会員登録が完了しました。</p>
-                  <p>ログインしてコンテンツをお楽しみください。</p>
-                  <div>
-                    <a 
-                      href="https://localhost:3000/" role="button" target="_blank"
-                      style="background: #4dd0e1; border-radius: 4px; color: #000; cursor: pointer; font-weight: 600; 
-                             height: 48px; line-height: 48px; margin: 0 auto; padding: 8px 16px;
-                             text-align: center; text-decoration: none; width: 320px;"
-                    >
-                      ログインして使い始める
-                    </a>
-                  </div>
-                  <p>
-                    ■ご注意<br>
-                    このメールは、Torashopにご登録いただいた方に自動送信しています。<br>
-                    本メールにお心当りがない場合は、誠に恐れ入りますが弊社サポートまでお問い合せくださいますようお願いいたします。
-                  </p>
-                  <p>
-                    トラハック<br>
-                    Email: torahack1492@gmail.com<br>
-                    HP: https://torahack.web.app
-                  </p>`;
-
-    // sendgrid.setApiKey(SENDGRID_API_KEY);
-    // const message = {
-    //     to: data.email,
-    //     from: "anzunakayama@gmail.com",
-    //     subject: "【Torashop】会員登録完了のお知らせ",
-    //     html: body
-    // };
-    // await sendgrid.send(message);
-    // return null
-});
-
 exports.updatePaymentMethod = functions.https.onRequest((req, res) => {
     const corsHandler = cors({origin: true});
 
@@ -140,5 +96,31 @@ exports.updatePaymentMethod = functions.https.onRequest((req, res) => {
             sendResponse(res, 500, {error: error})
         })
 
+    })
+})
+
+
+
+
+exports.paymentIntent = functions.https.onRequest((req, res) => {
+    const corsHandler = cors({origin: true});
+
+    corsHandler(req, res, () => {
+        if (req.method !== 'POST') {
+            sendResponse(res, 405, {error: "Invalid Request"})
+        }
+        return stripe.paymentIntents.create({
+            currency: 'cad',
+            amount: req.body.amount,
+            customer: req.body.customerId,
+            payment_method: req.body.paymentMethodId,
+            off_session: true,
+            confirm: true
+        }).then((customer) => {
+            sendResponse(res, 200, customer);
+        }).catch((error) => {
+            console.error(error);
+            sendResponse(res, 500, {error: error})
+        })
     })
 })

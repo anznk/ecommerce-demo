@@ -6,10 +6,12 @@ import {updateUserStateAction} from "../users/actions";
 
 // Set Header
 const headers = new Headers();
+require('dotenv').config();
 headers.set('Content-type', 'application/json');
-const BASE_URL = 'http://localhost:5001/ecommerce-demo-84728/us-central1';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
+
 
     const response = await fetch(BASE_URL + '/v1/customer', {
         method: 'POST',
@@ -65,14 +67,15 @@ export const registerCard = (stripe, elements, customerId) => {
         }
 
         const paymentMethodId = paymentMethod?.id;
-
+    console.log("paymentMethodId",paymentMethodId);
         // Create customer on Stripe
         if (customerId === "") {
+        
             const customerData = await createCustomer(email, paymentMethodId, uid, username);
             console.log("cus",customerData);
             if (!customerData.id) {
                 dispatch(hideLoadingAction());
-                alert('お客様情報の登録に失敗しました。1');
+                alert('Failed registration');
             } else {
                 const updateUserState = {
                     customer_id: customerData.id,
@@ -95,7 +98,7 @@ export const registerCard = (stripe, elements, customerId) => {
                         });
                         await deleteCustomer.json();
                         dispatch(hideLoadingAction());
-                        alert('お客様情報の登録に失敗しました。2');
+                        alert('Failed registration');
                     })
             }
         } else {
@@ -104,7 +107,7 @@ export const registerCard = (stripe, elements, customerId) => {
 
             if (!updatedPaymentMethod) {
                 dispatch(hideLoadingAction());
-                alert('お客様情報の更新に失敗しました。');
+                alert('Failed registration');
             } else {
                 const updateUserState = {payment_method_id: paymentMethodId}
                 db.collection('users').doc(uid)
@@ -112,11 +115,11 @@ export const registerCard = (stripe, elements, customerId) => {
                     .then(() => {
                         dispatch(updateUserStateAction(updateUserState));
                         dispatch(hideLoadingAction());
-                        alert('お客様情報を更新しました。');
+                        alert('Failed registration');
                         dispatch(push('/user/mypage'))
                     }).catch(() => {
                         dispatch(hideLoadingAction());
-                        alert('お客様情報の登録に失敗しました。3');
+                        alert('Failed registration');
                     })
             }
         }
@@ -124,7 +127,7 @@ export const registerCard = (stripe, elements, customerId) => {
 };
 
 export const retrievePaymentMethod = async (paymentMethodId) => {
-    
+
     const response = await fetch(BASE_URL + '/retrievePaymentMethod/v1/paymentMethod', {
         method: 'POST',
         headers: headers,
@@ -154,5 +157,25 @@ export const updatePaymentMethod = async (customerId, prevPaymentMethodId, nextP
 
     const paymentMethodResponse = await response.json();
     const paymentMethod = JSON.parse(paymentMethodResponse.body);
+    return paymentMethod.card
+}
+
+export const paymentIntent = async (amount, customerId, paymentMethodId) => {
+    
+    const response = await fetch(BASE_URL + '/paymentIntent', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            amount: amount,
+            customerId: customerId,
+            paymentMethodId: paymentMethodId
+        })
+    });
+    // console.log("response", response);
+
+    const cardResponse = await response.json();
+    console.log("cardResponse", cardResponse);
+    
+    const paymentMethod = JSON.parse(cardResponse.body);
     return paymentMethod.card
 }

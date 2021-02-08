@@ -11,7 +11,7 @@ import {PaymentEdit} from "../components/Payment";
 import {loadStripe} from "@stripe/stripe-js/pure";
 import {Elements} from "@stripe/react-stripe-js";
 import {hideLoadingAction, showLoadingAction} from "../reducks/loading/actions";
-import {retrievePaymentMethod} from "../reducks/payments/operations";
+import {retrievePaymentMethod, paymentIntent} from "../reducks/payments/operations";
 import {getCustomerId, getPaymentMethodId} from "../reducks/users/selectors";
 
 const STRIPE_PUBLIC_KEY = "pk_test_51I92u2A9KooaP4x92scgdj50WBROa9tb2UkC2AAAVVJQAodTXbGvpSkDaTYqfIygKRSNlbIlFdgERjNGCgpkPhda00FsyfrQ6b";
@@ -55,7 +55,8 @@ const OrderConfirm = () => {
     const tax = useMemo(() => (subtotal + shippingFee) * 0.12, [subtotal, shippingFee])
     const total = useMemo(() => subtotal + shippingFee + tax,[subtotal,shippingFee,tax])
 
-    const order = useCallback(() => {
+    const order = useCallback(async() => {
+        const a = await paymentIntent(total, customerId, paymentMethodId)
         dispatch(orderProduct(productsInCart, total))
     }, [productsInCart])
     useEffect(() => {
@@ -90,8 +91,8 @@ const OrderConfirm = () => {
                 </div>
                 <div className={classes.orderBox}>
                     <TextDetail label={"Total"} value={"¥"+subtotal.toLocaleString()} />
-                    <TextDetail label={"Shipping Fee"} value={"¥"+shippingFee.toLocaleString()} />
-                    <TextDetail label={"Tax"} value={"¥"+tax.toLocaleString()} />
+                    <TextDetail label={"Shipping Fee"} value={"$"+shippingFee.toLocaleString()} />
+                    <TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
                     <Divider />
                     <div className="module-spacer--extra-extra-small" />
                     <TextDetail label={"Total (including Tax)"} value={"¥"+total.toLocaleString()} />

@@ -41,7 +41,6 @@ const PaymentEdit = () => {
         (async() => {
             dispatch(showLoadingAction());
             const paymentMethod = await retrievePaymentMethod(paymentMethodId)
-            console.log("paymentMethodId2", paymentMethod);
             dispatch(hideLoadingAction());
             if (paymentMethod) {
                 setCard(paymentMethod)
