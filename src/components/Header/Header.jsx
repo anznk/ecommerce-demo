@@ -47,7 +47,7 @@ const Header = () => {
 		<div className={classes.root}>
 			<AppBar position="fixed" className={classes.menuBar}>
 				<Toolbar className={classes.toolbar}>
-					<img alt="Logo" src={logo} width="128px" onClick={() => dispatch(push('/'))} role="button" />
+					<img className="logo" alt="Logo" src={logo} width="128px" onClick={() => dispatch(push('/'))} role="button" />
 					{isSignedIn && (
 						<div className={classes.iconButtons}>
 							<HeaderMenu handleDrawerToggle={handleDrawerToggle} />

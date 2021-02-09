@@ -7,7 +7,7 @@ import {TextDetail} from "../UIkit";
 const OrderHistoryItem = (props) => {
     const orderedDatetime = datetimeToString(props.order.updated_at.toDate())
     const shippingDate = dateToString(props.order.shipping_date.toDate())
-    const totalPrice = "¥" + props.order.amount.toLocaleString()
+    const totalPrice = "$" + props.order.amount.toLocaleString()
     const products = props.order.products
 
     return (

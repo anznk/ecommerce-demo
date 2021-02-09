@@ -6,12 +6,11 @@ import {updateUserStateAction} from "../users/actions";
 
 // Set Header
 const headers = new Headers();
-require('dotenv').config();
 headers.set('Content-type', 'application/json');
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+const BASE_URL = "http://localhost:5001/ecommerce-demo-84728/us-central1";
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
-
 
     const response = await fetch(BASE_URL + '/v1/customer', {
         method: 'POST',

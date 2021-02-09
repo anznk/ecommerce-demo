@@ -47,7 +47,7 @@ const OrderedProducts = (props) => {
                             </ListItemAvatar>
                             <div className={classes.text}>
                                 <ListItemText primary={product.name} secondary={"Size：" + product.size} />
-                                <ListItemText primary={"¥"+product.price.toLocaleString()} />
+                                <ListItemText primary={"$"+product.price.toLocaleString()} />
                             </div>
                             <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} />
                         </ListItem>

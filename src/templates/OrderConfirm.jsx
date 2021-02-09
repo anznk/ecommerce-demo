@@ -14,8 +14,8 @@ import {hideLoadingAction, showLoadingAction} from "../reducks/loading/actions";
 import {retrievePaymentMethod, paymentIntent} from "../reducks/payments/operations";
 import {getCustomerId, getPaymentMethodId} from "../reducks/users/selectors";
 
-const STRIPE_PUBLIC_KEY = "pk_test_51I92u2A9KooaP4x92scgdj50WBROa9tb2UkC2AAAVVJQAodTXbGvpSkDaTYqfIygKRSNlbIlFdgERjNGCgpkPhda00FsyfrQ6b";
-const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
+require('dotenv').config();
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const useStyles = makeStyles((theme) => ({
     detailBox: {
@@ -51,12 +51,12 @@ const OrderConfirm = () => {
         return productsInCart.reduce((sum, product) => sum += product.price, 0)
     },[productsInCart])
 
-    const shippingFee = useMemo(() => (subtotal >= 10000) ? 0 : 210,[subtotal])
+    const shippingFee = useMemo(() => (subtotal >= 1000) ? 0 : 15,[subtotal])
     const tax = useMemo(() => (subtotal + shippingFee) * 0.12, [subtotal, shippingFee])
     const total = useMemo(() => subtotal + shippingFee + tax,[subtotal,shippingFee,tax])
 
     const order = useCallback(async() => {
-        const a = await paymentIntent(total, customerId, paymentMethodId)
+        await paymentIntent(total, customerId, paymentMethodId)
         dispatch(orderProduct(productsInCart, total))
     }, [productsInCart])
     useEffect(() => {
@@ -90,12 +90,12 @@ const OrderConfirm = () => {
                     </List>
                 </div>
                 <div className={classes.orderBox}>
-                    <TextDetail label={"Total"} value={"¥"+subtotal.toLocaleString()} />
+                    <TextDetail label={"Total"} value={"$"+subtotal.toLocaleString()} />
                     <TextDetail label={"Shipping Fee"} value={"$"+shippingFee.toLocaleString()} />
                     <TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
                     <Divider />
                     <div className="module-spacer--extra-extra-small" />
-                    <TextDetail label={"Total (including Tax)"} value={"¥"+total.toLocaleString()} />
+                    <TextDetail label={"Total (including Tax)"} value={"$"+total.toLocaleString()} />
                     <PrimaryButton label={"Confirmed your order"} onClick={order} />
                 </div>
             </div>
