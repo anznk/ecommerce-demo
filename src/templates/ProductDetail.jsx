@@ -8,26 +8,6 @@ import {addProductToCart} from "../reducks/users/operations";
 import {returnCodeToBr} from "../function/common";
 import "../styles/productDetail.scss"
 
-// const ErrorMessage = (props) => {
-//   const errorstyles = {
-//     color: "#fc0101"
-//   };
-//   const messages = props.message;
-  
-//   return (
-//     <React.Fragment>
-//       {messages !== null && 
-//         messages.map(message =>
-//         <p className="error" style={errorstyles} key={message}>
-//           {message}
-//         </p>
-//       )}
-//     </React.Fragment>
-//   );
-// }
-
-
-
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const selector = useSelector(state => state)
@@ -74,22 +54,20 @@ const ProductDetail = () => {
 							<ImageSwiper images={product.images}/>
 						</div>
 						<div className="detail">
-							<h2 className="u-text__headline">{product.name}</h2>
+							<h2 className="title">{product.name}</h2>
+              {/* <div className="module-spacer--small"/> */}
 							<p className="price">${(product.price).toLocaleString()}</p>
-							<div className="module-spacer--small"/>
+							{/* <div className="module-spacer--small"/> */}
+              <div className="description">
 							<p>{returnCodeToBr(product.description)}</p>
+              </div>
 							<div className="module-spacer--small"/>
+              <div className="size">
 							<p>Size</p>
+              </div>
 							<SizeTable addSize={addSize} sizes={product.sizes} />  
               <p className="errorMessage">{errorMessage}</p>
-							<button
-								style={{
-										border: "2px solid #000",
-										marginTop: "5rem",
-										cursor: "pointer",
-										padding:"1rem 3rem",
-										background:"#FFF"
-								}}
+							<button className="AddCart"
 								onClick={() => addProduct(selectedSize)}> Add cart 
 							</button>
 						</div>

@@ -43,10 +43,12 @@ const CartListItem = (props) => {
                 <ListItemAvatar>
                     <img className={classes.image} src={image} alt="Product image" />
                 </ListItemAvatar>
-                <div className={classes.text}>
-                    <ListItemText primary={props.product.name} secondary={"Size：" + props.product.size} />
+                {/* <div className="productDetail"> */}
+                    <ListItemText className="productDetail" primary={props.product.name} secondary={"Size：" + props.product.size} />
+                {/* </div> */}
+                {/* <div className="productPrice"> */}
                     <ListItemText primary={"$"+price} />
-                </div>
+                {/* </div> */}
                 <IconButton onClick={() => removeProductFromCart(props.product.cartId)} >
                     <DeleteIcon />
                 </IconButton>

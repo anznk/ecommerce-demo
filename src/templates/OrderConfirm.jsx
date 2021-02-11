@@ -13,6 +13,7 @@ import {Elements} from "@stripe/react-stripe-js";
 import {hideLoadingAction, showLoadingAction} from "../reducks/loading/actions";
 import {retrievePaymentMethod, paymentIntent} from "../reducks/payments/operations";
 import {getCustomerId, getPaymentMethodId} from "../reducks/users/selectors";
+import "../styles/orderConfirm.scss"
 
 require('dotenv').config();
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -27,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
             width: 512
         },
     },
-    orderBox: {
-        border: '1px solid rgba(0,0,0,0.2)',
-        borderRadius: 4,
-        boxShadow: '0 4px 2px 2px rgba(0,0,0,0.2)',
-        height: 256,
-        margin: '24px auto 16px auto',
-        padding: 16,
-        width: 288
-    },
+    // orderBox: {
+    //     border: '1px solid rgba(0,0,0,0.2)',
+    //     borderRadius: 4,
+    //     boxShadow: '0 4px 2px 2px rgba(0,0,0,0.2)',
+    //     height: 256,
+    //     margin: '24px auto 16px auto',
+    //     padding: 16,
+    //     width: 288
+    // },
 }));
 
 const OrderConfirm = () => {
@@ -79,17 +80,26 @@ const OrderConfirm = () => {
     },[card])
 
     return (
-        <section>
-            <h2>Comfirm your order</h2>
-            <div className="p-grid__row">
-                <div className={classes.detailBox}>
-                    <List>
-                        {productsInCart.length > 0 && (
-                            productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
-                        )}
-                    </List>
-                </div>
-                <div className={classes.orderBox}>
+        <section className="confirmSection">
+            <div className="leftSection">
+							<h2>Comfirm your order</h2>
+							<div className={classes.detailBox}>
+									<List>
+											{productsInCart.length > 0 && (
+													productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
+											)}
+									</List>
+							</div>
+							<div className="payment">
+                <h2>Payment</h2>
+                { card ? 
+								<TextDetail label={card.brand} value={cardNumber} key={card.id}/>
+                 : <Elements stripe={stripePromise}>
+											<PaymentEdit />
+                    </Elements>
+                }
+            	</div>
+                <div className="orderBox">
                     <TextDetail label={"Total"} value={"$"+subtotal.toLocaleString()} />
                     <TextDetail label={"Shipping Fee"} value={"$"+shippingFee.toLocaleString()} />
                     <TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
@@ -98,16 +108,6 @@ const OrderConfirm = () => {
                     <TextDetail label={"Total (including Tax)"} value={"$"+total.toLocaleString()} />
                     <PrimaryButton label={"Confirmed your order"} onClick={order} />
                 </div>
-            </div>
-            <div>
-                <h3>Current Credit Card Info</h3>
-                { card ? <TextDetail label={card.brand} value={cardNumber} key={card.id}/>
-                 : <Elements stripe={stripePromise}>
-                        <PaymentEdit />
-                    </Elements>
-                }
-
-                
             </div>
         </section>
     );

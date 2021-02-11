@@ -1,0 +1,27 @@
+.confirmSection{
+  width: 100vw;
+  .leftSection{
+    width: 80%;
+    h2{
+      text-align: center;
+    }
+  }
+  .detailBox{
+    margin: 0 auto;
+  }
+  .payment{
+    margin: 0 auto;
+    width:60%;
+
+  }
+  .orderBox{
+    background: #FCFFFF;
+    // border: '1px solid rgba(0,0,0,0.2)',
+    // borderRadius: 4,
+    // boxShadow: '0 4px 2px 2px rgba(0,0,0,0.2)',
+    // height: 256,
+    // margin: '24px auto 16px auto',
+    // padding: 16,
+    // width: 288
+  }
+}

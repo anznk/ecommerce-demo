@@ -1,6 +1,14 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  color: #999;
+}
 .logo{
   cursor: pointer;
 }
 .errorMessage{
-  color:red;
+  color: red;
 }
+.MuiPaper-elevation4{
+  box-shadow: none !important;
+}
+

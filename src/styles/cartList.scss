@@ -1,9 +1,65 @@
-
+.cartSection{
+  width: 100vw;
+  .pageTitle{
+      font-size: 20px;
+      font-weight: 400;
+      color: #999;
+      width: 60%;
+      text-align: center;
+      margin: 10px auto;
+      padding-bottom: 20px;
+  }
+  .bd-bottom{
+    border-bottom: 1px solid #dfdfdf;
+  }
+  .productDetail{
+    width: 60%;
+  }
+  .total{
+    width: 60%;
+    margin: 10px auto;
+    text-align: right;
+    // padding-bottom: 12px;
+    padding: 0 60px 12px 0;
+    border-bottom: 1px solid #dfdfdf;
+  }
+  .buttonArea{
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    justify-content:space-between;
+  }
+  .button{
+    width: 150px;
+    height: 40px;
+    font-size: 12px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .buckButton{
+    border: 1px solid #dfdfdf;
+    color: #999;
+    background:#dfdfdf;
+    &:hover {
+      background: #999;
+      color: #fff;
+    }
+  }
+  .buyButton{
+    border: 1px solid #dfdfdf;
+    color: #fff;
+    background:#8c8c8c;
+    &:hover {
+      background: #dfdfdf;
+      color: #999;
+    }
+  }
+}
  .root{
-    // margin: 0 auto;
-    max-width: 512px;
-    width: 100%;
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
  }
  .MuiList-root{
-   margin: 0 auto;
+   margin: 0 auto !important;
  }

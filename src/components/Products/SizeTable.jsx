@@ -11,24 +11,24 @@ import {makeStyles} from "@material-ui/styles";
 import {createStyles} from "@material-ui/core";
 
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-      "iconCell": {
-        padding: 0,
-        height: 40,
-        width: 40
-      },
-      "sizesButton": {
-        border: '2px solid #000',
-        border_radius: 0,
-        background: '#fff',
-        "&:hover": {
-          color: '#fff',
-          backgroundColor: '#000'
-        }
-      }
-    })
-)
+// const useStyles = makeStyles((theme) =>
+//     createStyles({
+//       "iconCell": {
+//         padding: 0,
+//         height: 40,
+//         width: 40
+//       },
+//       "sizesButton": {
+//         border: '2px solid #999',
+//         border_radius: 0,
+//         background: '#fff',
+//         "&:hover": {
+//           color: '#999',
+//           backgroundColor: '#000'
+//         }
+//       }
+//     })
+// )
 
 
 const SizeTable = (props) => {
@@ -52,7 +52,7 @@ const SizeTable = (props) => {
     
     props.addSize(size);
   }
-  const classes = useStyles()
+  // const classes = useStyles()
   
   
   return (
@@ -61,14 +61,19 @@ const SizeTable = (props) => {
     {props.sizes[0].quantity >0 && (
       <button
         style={{
-          border: "2px solid #000",
+          color:
+            selectedS === true
+            ? "#FFF"
+            : "#999",
+          border: "1px solid #999",
           width:"2rem",
           height:"2rem",
           marginRight: "1rem",
           border_radius: 0,
+          outline: selectedS === true && 0,
           background:
             selectedS === true
-            ? "#D3D3D3"
+            ? "#999"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[0].size)}
@@ -77,14 +82,19 @@ const SizeTable = (props) => {
     {props.sizes[1].quantity >0 && (
       <button
         style={{
-          border: "2px solid #000",
+          color:
+            selectedM === true
+            ? "#FFF"
+            : "#999",
+          border: "1px solid #999",
           width:"2rem",
           height:"2rem",
           marginRight: "1rem",
           border_radius: 0,
+          outline: selectedM === true && 0,
           background:
             selectedM === true
-            ? "#D3D3D3"
+            ? "#999"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[1].size)}
@@ -93,14 +103,19 @@ const SizeTable = (props) => {
     {props.sizes[2].quantity >0 && (
       <button
         style={{
-          border: "2px solid #000",
+          color:
+            selectedL === true
+            ? "#FFF"
+            : "#999",
+          border: "1px solid #999",
           width:"2rem",
           height:"2rem",
           marginRight:"1rem",
           border_radius: 0,
+          outline: selectedL === true && 0,
           background:
             selectedL === true
-            ? "#D3D3D3"
+            ? "#999"
             : "#FFF"
         }}
         onClick={() => ChangedSize(props.sizes[2].size)}
