@@ -1,4 +1,5 @@
 .confirmSection{
+  display: flex;
   width: 100vw;
   .leftSection{
     width: 80%;
@@ -7,21 +8,43 @@
     }
   }
   .detailBox{
-    margin: 0 auto;
+    margin: 0 auto 30px;
+    width: 60%;
   }
   .payment{
     margin: 0 auto;
-    width:60%;
+    width: 60%;
 
   }
+  .paymentMethod{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .buttonArea{
+    width: 100%;
+    
+    margin: 0 auto;
+    .confirmedButton{
+      margin-left: 50px;
+      margin: 0 auto;
+      text-align: center;
+      width: 200px;
+      height: 50px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #dfdfdf;
+      color: #fff;
+      background:#4d4d4d;
+      &:hover {
+        background: #dfdfdf;
+        border: 1px solid #4d4d4d;
+        color: #4d4d4d;
+      }
+    }
+  }
+
   .orderBox{
     background: #FCFFFF;
-    // border: '1px solid rgba(0,0,0,0.2)',
-    // borderRadius: 4,
-    // boxShadow: '0 4px 2px 2px rgba(0,0,0,0.2)',
-    // height: 256,
-    // margin: '24px auto 16px auto',
-    // padding: 16,
-    // width: 288
   }
 }

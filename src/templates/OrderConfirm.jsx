@@ -18,29 +18,10 @@ import "../styles/orderConfirm.scss"
 require('dotenv').config();
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const useStyles = makeStyles((theme) => ({
-    detailBox: {
-        margin: '0 auto',
-        [theme.breakpoints.down('sm')]: {
-            width: 320
-        },
-        [theme.breakpoints.up('md')]: {
-            width: 512
-        },
-    },
-    // orderBox: {
-    //     border: '1px solid rgba(0,0,0,0.2)',
-    //     borderRadius: 4,
-    //     boxShadow: '0 4px 2px 2px rgba(0,0,0,0.2)',
-    //     height: 256,
-    //     margin: '24px auto 16px auto',
-    //     padding: 16,
-    //     width: 288
-    // },
-}));
+
 
 const OrderConfirm = () => {
-    const classes = useStyles();
+
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
     const productsInCart = getProductsInCart(selector);
@@ -80,36 +61,44 @@ const OrderConfirm = () => {
     },[card])
 
     return (
-        <section className="confirmSection">
-            <div className="leftSection">
-							<h2>Comfirm your order</h2>
-							<div className={classes.detailBox}>
-									<List>
-											{productsInCart.length > 0 && (
-													productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
-											)}
-									</List>
-							</div>
-							<div className="payment">
-                <h2>Payment</h2>
-                { card ? 
-								<TextDetail label={card.brand} value={cardNumber} key={card.id}/>
-                 : <Elements stripe={stripePromise}>
-											<PaymentEdit />
-                    </Elements>
-                }
-            	</div>
-                <div className="orderBox">
-                    <TextDetail label={"Total"} value={"$"+subtotal.toLocaleString()} />
-                    <TextDetail label={"Shipping Fee"} value={"$"+shippingFee.toLocaleString()} />
-                    <TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
-                    <Divider />
-                    <div className="module-spacer--extra-extra-small" />
-                    <TextDetail label={"Total (including Tax)"} value={"$"+total.toLocaleString()} />
-                    <PrimaryButton label={"Confirmed your order"} onClick={order} />
-                </div>
-            </div>
-        </section>
+			<section className="confirmSection">
+				<div className="leftSection">
+					<h2>Comfirm your order</h2>
+					<div className="detailBox">
+							<List>
+									{productsInCart.length > 0 && (
+											productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
+									)}
+							</List>
+					</div>
+					<div className="payment">
+						<h2>Payment</h2>
+						<div className="paymentMethod">
+						{ card ? 
+							<TextDetail label={card.brand} value={cardNumber} key={card.id}/>
+								: <Elements stripe={stripePromise}>
+										<PaymentEdit />
+									</Elements>
+							}
+						</div>
+					</div>
+					<div className="buttonArea">
+						<button className="confirmedButton" onClick={order}> Confirmed your order </button>
+					</div>
+				</div>
+				<div className="rightSection" >
+					<div className="orderBox">
+						<TextDetail label={"Total"} value={"$"+subtotal.toLocaleString()} />
+						<TextDetail label={"Shipping Fee"} value={"$"+shippingFee.toLocaleString()} />
+						<TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
+						<Divider />
+						<div className="module-spacer--extra-extra-small" />
+						<TextDetail label={"Total (including Tax)"} value={"$"+total.toLocaleString()} />
+						
+						{/* <PrimaryButton label={"Confirmed your order"} onClick={order} /> */}
+					</div>
+				</div>
+			</section>
     );
 };
 
