@@ -1,7 +1,7 @@
   $widthS: 16px;
   $widthM: 32px;
   
-  .root{
+  .productCard{
     cursor: pointer;
     @media screen and (min-width: 600px) {
       margin: 8px;
@@ -11,12 +11,15 @@
       margin: 16px;
       width: calc( 33.3333% -  #{$widthM} );
     }
+
   }
 
   .content{
     display: flex;
     padding: 16px 8px;
     text-align: left;
+    background: #fbfbf5;
+    border: transparent;
     &:last-child {
       padding-Bottom: 16px;
      }
@@ -47,4 +50,7 @@
         height: 18px;
         line-clamp: 1px;
     }
+  }
+  .MuiPaper-elevation1{
+    box-shadow: none !important;
   }

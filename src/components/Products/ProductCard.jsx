@@ -36,55 +36,55 @@ const ProductCard = (props) => {
     };
 
     return (
-        <Card className="root">
-            <CardMedia
-                className= "media"
-                image={images[0].path}
-                onClick={() => dispatch(push('/product/'+props.id))}
-                title=""
-            />
-            <CardContent className="content">
-                <div onClick={() => dispatch(push('/product/'+props.id))}>
-                    <Typography className="productName" color="textSecondary" component="p">
-                        {props.name}
-                    </Typography>
-                    <Typography className="price" component="p">
-                        ${price}
-                    </Typography>
-                </div>
-                {isAdministrator && (
-                    <>
-                        <IconButton className= "icon" onClick={handleClick}>
-                            <MoreVertIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem
-                                onClick={() => {
-                                    dispatch(push('/product/edit/'+props.id))
-                                    handleClose()
-                                }}
-                            >
-                                編集する
-                            </MenuItem>
-                            <MenuItem
-                                onClick={() => {
-                                    dispatch(deleteProduct(props.id))
-                                    handleClose()
-                                }}
-                            >
-                                削除する
-                            </MenuItem>
-                        </Menu>
-                    </>
-                )}
-            </CardContent>
-        </Card>
+			<Card className="productCard">
+					<CardMedia
+							className= "media"
+							image={images[0].path}
+							onClick={() => dispatch(push('/product/'+props.id))}
+							title=""
+					/>
+					<CardContent className="content">
+							<div onClick={() => dispatch(push('/product/'+props.id))}>
+									<Typography className="productName" color="textSecondary" component="p">
+											{props.name}
+									</Typography>
+									<Typography className="price" component="p">
+											${price}
+									</Typography>
+							</div>
+							{isAdministrator && (
+								<>
+									<IconButton className= "icon" onClick={handleClick}>
+										<MoreVertIcon />
+									</IconButton>
+									<Menu
+										id="menu-appbar"
+										anchorEl={anchorEl}
+										keepMounted
+										open={Boolean(anchorEl)}
+										onClose={handleClose}
+									>
+										<MenuItem
+												onClick={() => {
+														dispatch(push('/product/edit/'+props.id))
+														handleClose()
+												}}
+										>
+											Edit
+										</MenuItem>
+										<MenuItem
+												onClick={() => {
+														dispatch(deleteProduct(props.id))
+														handleClose()
+												}}
+										>
+											Delete
+										</MenuItem>
+								</Menu>
+							</>
+						)}
+					</CardContent>
+			</Card>
     );
 }
 

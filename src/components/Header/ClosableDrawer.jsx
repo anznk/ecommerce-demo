@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) =>
 		// necessary for content to be below app bar
 		toolbar: theme.mixins.toolbar,
 		drawerPaper: {
+			backgroundColor:'F4F4E3',
 			width: 256,
 		},
 		searchField: {

@@ -10,6 +10,7 @@ import {getCustomerId, getPaymentMethodId} from "../../reducks/users/selectors";
 import {useSelector} from "react-redux";
 import {push} from "connected-react-router"
 import {hideLoadingAction, showLoadingAction} from "../../reducks/loading/actions";
+import "../../styles/paymentEdit.scss"
 
 const useStyles = makeStyles({
     element: {
@@ -101,14 +102,17 @@ const PaymentEdit = () => {
             </div>
             <div className="module-spacer--medium"/>
             <div className="center">
-                <PrimaryButton
+							<button className="saveButton" onClick={register} >Save</button>
+							<button className="backButton" onClick={goBackToMyPage} >back to my page</button>
+                {/* <PrimaryButton
                     label={"Save"}
                     onClick={register}
-                />
-                <button
+                /> */}
+                
+                {/* <button
                     label={"back to my page"}
                     onClick={goBackToMyPage}
-                />
+                /> */}
             </div>
         </section>
     );

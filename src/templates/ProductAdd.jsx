@@ -90,10 +90,13 @@ const ProductAdd = () => {
                 <SetSizesArea sizes={sizes} setSizes={setSizes} />
                 <div className="module-spacer--small" />
                 <div className="center">
-                    <PrimaryButton
+									<button className="saveButton" onClick={() => dispatch(saveProduct(id, name, description, category, price, sizes, images))}>
+										Save
+									</button>
+                    {/* <PrimaryButton
                         label={"Save"}
                         onClick={() => dispatch(saveProduct(id, name, description, category, price, sizes, images))}
-                    />
+                    /> */}
                 </div>
             </div>
         </section>
