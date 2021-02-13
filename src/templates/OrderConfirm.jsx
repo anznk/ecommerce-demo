@@ -93,7 +93,7 @@ const OrderConfirm = () => {
 						<TextDetail label={"Tax"} value={"$"+tax.toLocaleString()} />
 						<Divider />
 						<div className="module-spacer--extra-extra-small" />
-						<TextDetail label={"Total (including Tax)"} value={"$"+total.toLocaleString()} />
+						<TextDetail label={"Total"} value={"$"+total.toLocaleString()} />
 						
 						{/* <PrimaryButton label={"Confirmed your order"} onClick={order} /> */}
 					</div>

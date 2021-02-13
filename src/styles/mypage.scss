@@ -1,0 +1,18 @@
+.mypage{
+  .button{
+    width: 200px;
+    height: 40px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+    color: #999;
+    background:transparent;
+    &:hover {
+      border: 1px solid #999;
+      color: #4d4d4d;
+    }
+  }
+  .button:nth-child(1){
+    margin-bottom: 20px;
+  }
+}

@@ -8,6 +8,7 @@ import {makeStyles} from "@material-ui/styles";
 import {PrimaryButton} from "../UIkit";
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router"
+import "../../styles/orderedProducts.scss"
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -49,7 +50,10 @@ const OrderedProducts = (props) => {
                                 <ListItemText primary={product.name} secondary={"Size：" + product.size} />
                                 <ListItemText primary={"$"+product.price.toLocaleString()} />
                             </div>
-                            <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} />
+                            <button className="detailButton" onClick={() => goToProductPage(product.id)}>
+                            See the detail
+                            </button>
+                            {/* <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} /> */}
                         </ListItem>
                         <Divider />
                     </>

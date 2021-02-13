@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SecondaryButton, TextDetail} from "../components/UIkit";
 import {getUsername} from "../reducks/users/selectors";
 import {push} from "connected-react-router";
+import "../styles/mypage.scss"
 
 const UserMyPage = () => {
   const dispatch = useDispatch();
@@ -14,14 +15,16 @@ const UserMyPage = () => {
   }, []);
 
   return (
-    <section className="c-section-container">
+    <section className="c-section-container mypage">
       <h2 className="u-text-center">Account</h2>
       <div className="module-spacer--medium" />
       <TextDetail label="User Name" value={username} />
       <div className="module-spacer--small" />
       <div className="center">
-        <SecondaryButton label={"Edit your payment method"} onClick={() => transition('/user/payment/edit')} />
-        <SecondaryButton label={"Order history"} onClick={() => transition('/order/history')}/>
+        <button className="button" onClick={() => transition('/user/payment/edit')} >Edit your payment method</button>
+        <button className="button" onClick={() => transition('/order/history')} >Order history</button>
+        {/* <SecondaryButton label={"Edit your payment method"} onClick={() => transition('/user/payment/edit')} /> */}
+        {/* <SecondaryButton label={"Order history"} onClick={() => transition('/order/history')}/> */}
       </div>
     </section>
   );
