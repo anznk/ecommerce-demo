@@ -1,0 +1,10 @@
+{
+  "stripe": {
+    "token": "sk_test_51I92u2A9KooaP4x9UiZTz2pW2jUUHcyIPNvr7TPcXjIIoKhi8sy8K1rr7Ce40MnPaPaz2dQPSSczumIFfg6jXKgo00vHvc7X5D",
+    "secret_token": "sk_test_51I92u2A9KooaP4x9UiZTz2pW2jUUHcyIPNvr7TPcXjIIoKhi8sy8K1rr7Ce40MnPaPaz2dQPSSczumIFfg6jXKgo00vHvc7X5D",
+    "key": "“sk_test_51I92u2A9KooaP4x9UiZTz2pW2jUUHcyIPNvr7TPcXjIIoKhi8sy8K1rr7Ce40MnPaPaz2dQPSSczumIFfg6jXKgo00vHvc7X5D”"
+  },
+  "config": {
+    "key": "“sk_test_51I92u2A9KooaP4x9UiZTz2pW2jUUHcyIPNvr7TPcXjIIoKhi8sy8K1rr7Ce40MnPaPaz2dQPSSczumIFfg6jXKgo00vHvc7X5D”"
+  }
+}

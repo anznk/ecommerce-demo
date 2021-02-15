@@ -175,6 +175,24 @@ export const signIn = (email, password) => {
             });
     }
 };
+
+export const resetPassword = (email) => {
+    return async (dispatch) => {
+        if (!isValidEmailFormat(email)) {
+            alert('Invalid email address')
+            return false
+        } else {
+            return auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    alert('Please check email address')
+                    dispatch(push('/signin'))
+                }).catch(() => {
+                    alert('Invalid email address')
+                })
+        }
+    }
+}
+
 export const signOut = () => {
     return async (dispatch, getState) => {
         dispatch(showLoadingAction("Sign out..."));

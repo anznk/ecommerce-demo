@@ -1,8 +1,9 @@
 import React, {useState, useCallback} from 'react';
-import {PrimaryButton, TextInput} from "../components/UIkit";
+import {TextInput} from "../components/UIkit";
 import {useDispatch} from "react-redux";
 import {signIn} from "../reducks/users/operations";
 import {push} from "connected-react-router"
+import "../styles/signIn.scss"
 
 const SignIn = () => {
     const dispatch = useDispatch();
@@ -33,10 +34,13 @@ const SignIn = () => {
             />
             <div className="module-spacer--medium" />
             <div className="center">
-                <PrimaryButton label={"Log in"} onClick={() => dispatch(signIn(email, password))} />
-                <div className="module-spacer--small" />
-                <p className="u-text-small" onClick={() => dispatch(push('/signin/reset'))}>Forget password?</p>
-                <p className="u-text-small" onClick={() => dispatch(push('/signup'))}>Register account</p>
+							<button className="logInButton" onClick={() => dispatch(signIn(email, password))}>
+							Log in
+							</button>
+                {/* <PrimaryButton label={"Log in"} onClick={() => dispatch(signIn(email, password))} /> */}
+							<div className="module-spacer--small" />
+							<p className="u-text-small" onClick={() => dispatch(push('/signin/reset'))}>Forget password?</p>
+							<p className="u-text-small" onClick={() => dispatch(push('/signup'))}>Register account</p>
             </div>
         </div>
     );
