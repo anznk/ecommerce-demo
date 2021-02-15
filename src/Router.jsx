@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
-import {SignIn, SignUp, ProductList, ProductDetail, ProductEdit, ProductAdd, CartList, OrderConfirm, OrderComplete, OrderHistory, MyPage, CheckoutWrapper} from "./templates";
+import {SignIn, SignUp, Reset, ProductList, ProductDetail, ProductEdit, ProductAdd, CartList, OrderConfirm, OrderComplete, OrderHistory, MyPage, CheckoutWrapper} from "./templates";
 import Auth from "./Auth";
 import "./styles/index.scss"
 
@@ -9,6 +9,7 @@ const Router = () => {
       <Switch>
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signin/reset" component={Reset} />
         <Auth>
           <Route exact path="(/)?" component={ProductList} />
           <Route exact path="/product/:id" component={ProductDetail} />

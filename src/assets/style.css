@@ -119,6 +119,7 @@
 
 .u-text-small {
     font-size: .9rem;
+    cursor: pointer;
 }
 
 .u-text__link-none {

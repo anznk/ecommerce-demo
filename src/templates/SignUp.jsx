@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {TextInput, PrimaryButton} from "../components/UIkit";
 import {signUp} from '../reducks/users/operations'
 import {useDispatch} from "react-redux";
+import "../styles/signUp.scss"
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -93,14 +94,12 @@ const SignUp = () => {
       />
       <div className="module-spacer--medium" />
         <div className="center">
-          <PrimaryButton
-              label={"Register"}
-              onClick={() => dispatch(signUp(username, email, password, confirmPassword))}
-          />
+          <button className="registerButton" onClick={() => dispatch(signUp(username, email, password, confirmPassword))}>
+            Submit
+          </button>
           <div className="module-spacer--small" />
           
       </div>
-      {/* <div>asdf{inputValues && {inputValues.usename}</div> */}
     </div>
 
     

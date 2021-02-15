@@ -1,10 +1,9 @@
 const functions = require('firebase-functions');
 const sendgrid = require('@sendgrid/mail');
 const cors = require('cors');
+const firebase = require('firebase');
 
-
-require('dotenv').config();
-const stripe = require('stripe')(process.env.REACT_APP_KEY);
+const stripe = require('stripe')(functions.config().stripe.secret_token);
 
 
 // Send response when calling APIs
