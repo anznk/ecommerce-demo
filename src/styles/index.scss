@@ -3,6 +3,11 @@ body{
   color: #999;
   background: #fbfbf5;
 }
+.logoArea{
+  width:80%;
+  padding-left: 10%;
+  text-align: center;
+}
 .logo{
   cursor: pointer;
 }
@@ -14,4 +19,7 @@ body{
 }
 .u-text__headline{
   color: #999;
+}
+.makeStyles-menuBar-2{
+  background: #fbfbf5 !important;
 }
