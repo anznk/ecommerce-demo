@@ -8,7 +8,7 @@ import {updateUserStateAction} from "../users/actions";
 const headers = new Headers();
 headers.set('Content-type', 'application/json');
 
-const BASE_URL = "http://localhost:5001/ecommerce-demo-84728/us-central1";
+const BASE_URL = "https://us-central1-ecommerce-demo-84728.cloudfunctions.net";
 
 const createCustomer = async (email, paymentMethodId, uid, username) => {
 
