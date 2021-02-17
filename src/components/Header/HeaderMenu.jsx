@@ -54,9 +54,9 @@ const HeaderMenu = (props) => {
                     <ShoppingCartIcon />
                 </Badge>
             </IconButton>
-            <IconButton>
+            {/* <IconButton>
                 <FavoriteBorderIcon />
-            </IconButton>
+            </IconButton> */}
             <IconButton
                 aria-label="Menu Items"
                 aria-controls="menu-appbar"
