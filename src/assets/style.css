@@ -174,3 +174,10 @@
         height: 48px
     }
 }
+
+.MuiDrawer-paper{
+    background: #fbfbf5;
+}
+.MuiPaper-root{
+    background: #fbfbf5 !important;
+}
