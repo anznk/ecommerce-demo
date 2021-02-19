@@ -57,8 +57,8 @@ const ClosableDrawer = (props) => {
 	const [searchKeyword, setSearchKeyword] = useState(""),
 		[filters, setFilters] = useState([
 			{func: selectMenu, label: "All", id: "all", value: "/"},
-			{func: selectMenu, label: "2020-21 F/W", id: "2020FW", value: "/?season=2020FW"},
-			{func: selectMenu, label: "2020-21 S/S", id: "2020SS", value: "/?season=2020SS"},
+			{func: selectMenu, label: "2020-21 F/W", id: "2020FW", value: "/?category=2020FW"},
+			{func: selectMenu, label: "2020-21 S/S", id: "2021SS", value: "/?category=2021SS"},
 		]);
 
 	const menus = [
@@ -67,17 +67,27 @@ const ClosableDrawer = (props) => {
 		{func: selectMenu, label: "My page", icon: <PersonIcon/>, id: "mypage", value: "/user/mypage"},
 	];
 
-	useEffect(() => {
-		db.collection('categories').orderBy("order", "asc").get()
-			.then(snapshots => {
-				const list = []
-				snapshots.forEach(snapshot => {
-					const category = snapshot.data()
-					list.push({func: selectMenu, label: category.name, id: category.id, value: `/?category=${category.id}`})
-				})
+	// useEffect(() => {
+	// 	db.collection('categories').orderBy("order", "asc").get()
+	// 		.then(snapshots => {
+	// 			const list = []
+	// 			snapshots.forEach(snapshot => {
+	// 				const category = snapshot.data()
+	// 				list.push({func: selectMenu, label: category.name, id: category.id, value: `/?category=${category.id}`})
+	// 			})
+	// 			setFilters(prevState => [...prevState, ...list])
+	// 		});
+	// },[])
+
+		useEffect(() => {
+			db.collection("categories").get().then(function(querySnapshot) {
+				const list = [];
+				querySnapshot.forEach(function(doc) {
+					list.push({func: selectMenu, id: doc, value: `/?category=${doc}`})
+				});
 				setFilters(prevState => [...prevState, ...list])
 			});
-	},[])
+    },[])
 
 	const inputSearchKeyword = useCallback((event) => {
 		setSearchKeyword(event.target.value)

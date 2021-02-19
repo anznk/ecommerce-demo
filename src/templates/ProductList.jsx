@@ -11,11 +11,11 @@ const ProductList = () => {
 	const products = getProducts(selector)
 
 	const query = window.location.search
-	const season = /^\?season=/.test(query) ? query.split('?season=')[1] : ""
+	// const season = /^\?season=/.test(query) ? query.split('?season=')[1] : ""
 	const category = /^\?category=/.test(query) ? query.split('?category=')[1] : ""
 
 	useEffect(() => {
-			dispatch(fetchProducts(season, category))
+			dispatch(fetchProducts(category))
 	},[query])
 
 	return (
