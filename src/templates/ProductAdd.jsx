@@ -45,47 +45,39 @@ const ProductAdd = () => {
         }
     },[id])
 
+
     useEffect(() => {
-        // db.collection('categories').orderBy("order", "asc").get().then(snapshots => {
-        //     const list = []
-        //     snapshots.forEach(snapshot => {
-        //         list.push(snapshot.data())
-        //     })
-        //     setCategories(list)
-        // });
+        db.collection("categories").get().then(function(querySnapshot) {
+            const list = [];
+            querySnapshot.forEach(function(doc) {
+                list.push(doc.id);
+            });
+            setCategories(list);
+        });
     },[])
 
     return (
         <section>
-
+    
             <h2 className="u-text__headline u-text-center">Add products</h2>
             <div className="c-section-container">
             
-                <ImageArea images={images} setImages={setImages} />
-            
-            
+                <ImageArea images={images} setImages={setImages} />            
                 <TextInput
                     fullWidth={true} label={"Name"} multiline={false} required={true}
                     onChange={inputName} rows={1} value={name} type={"text"}
                 />
-            
-            
                 <TextInput
                     fullWidth={true} label={"detail"} multiline={true} required={true}
                     onChange={inputDescription} rows={5} value={description} type={"text"}
-                />
-            
-            
+                /> 
                 <SelectBox
                     label={"Category"} options={categories} required={true} select={setCategory} value={category}
                 />
-            
-            
                 <TextInput
                     fullWidth={true} label={"Price"} multiline={false} required={true}
                     onChange={inputPrice} rows={1} value={price} type={"number"}
                 />
-            
                 <div className="module-spacer--small"/>
                 <SetSizesArea sizes={sizes} setSizes={setSizes} />
                 <div className="module-spacer--small" />

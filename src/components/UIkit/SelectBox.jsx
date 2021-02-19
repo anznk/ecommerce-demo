@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SelectBox = (props) => {
+    
     const classes = useStyles();
 
     return (
@@ -23,8 +24,8 @@ const SelectBox = (props) => {
                 value={props.value} required={props.required}
                 onChange={(e) => props.select(e.target.value)}
             >
-                {props.options.map((value) => {
-                    return <MenuItem key={value.id} value={value.id}>{value.name}</MenuItem>
+                {props.options.map((value, index) => {
+                    return <MenuItem key={index} value={value}>{value}</MenuItem>
                 })}
             </Select>
         </FormControl>

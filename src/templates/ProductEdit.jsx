@@ -41,23 +41,23 @@ const ProductEdit = () => {
                 setImages(product.images)
                 setPrice(product.price)
                 setSizes(product.sizes)
+                setCategory(product.category)
             })
         }
     },[id])
 
     useEffect(() => {
-        // db.collection('categories').orderBy("order", "asc").get().then(snapshots => {
-        //     const list = []
-        //     snapshots.forEach(snapshot => {
-        //         list.push(snapshot.data())
-        //     })
-        //     setCategories(list)
-        // });
+        db.collection("categories").get().then(function(querySnapshot) {
+            const list = [];
+            querySnapshot.forEach(function(doc) {
+                list.push(doc.id);
+            });
+            setCategories(list);
+        });
     },[])
 
     return (
         <section>
-
             <h2 className="u-text__headline u-text-center">Edit products</h2>
             <div className="c-section-container">
             {images &&
@@ -75,10 +75,12 @@ const ProductEdit = () => {
                     onChange={inputDescription} rows={5} value={description} type={"text"}
                 />
             }
-            {category &&
+            {categories &&
+            <>
                 <SelectBox
                     label={"Category"} options={categories} required={true} select={setCategory} value={category}
                 />
+                </>
             }
             {price &&
                 <TextInput
