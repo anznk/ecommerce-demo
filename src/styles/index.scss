@@ -11,6 +11,14 @@ body{
 .logo{
   cursor: pointer;
 }
+@media screen and (max-width:600px) {
+  .logoArea{
+    width:70%;
+    padding-left: 0;
+    text-align: left;
+  }
+  
+}
 .errorMessage{
   color: red;
 }
