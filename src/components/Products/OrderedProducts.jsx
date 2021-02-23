@@ -51,7 +51,7 @@ const OrderedProducts = (props) => {
                                 <ListItemText primary={"$"+product.price.toLocaleString()} />
                             </div>
                             <button className="detailButton" onClick={() => goToProductPage(product.id)}>
-                            See the detail
+                            Details
                             </button>
                             {/* <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} /> */}
                         </ListItem>
