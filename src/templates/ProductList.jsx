@@ -21,9 +21,9 @@ const ProductList = () => {
 		<section className="c-section-wrapin">
 			<div className="p-grid__row">
 				{products.length > 0 && (
-					products.map(product => (
+					products.map((product, index) => (
 						<ProductCard
-							key={product.id} id={product.id} images={product.images}
+							key={index} id={product.id} images={product.images}
 							price={product.price} name={product.name}
 						/>
 					))

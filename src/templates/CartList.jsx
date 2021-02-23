@@ -24,11 +24,11 @@ const CartList = () => {
 	}, []);
 
 	return (
-		<section class="cartSection">
-			<h2 class="pageTitle bd-bottom">Cart</h2>
+		<section className="cartSection">
+			<h2 className="pageTitle bd-bottom">Cart</h2>
 			<List className="root">
 					{productsInCart.length > 0 && (
-							productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
+							productsInCart.map((product, index) => <CartListItem product={product} key={index} />)
 					)}
 			</List>
 			<div className="total">Total: ${subtotal.toLocaleString()}</div>

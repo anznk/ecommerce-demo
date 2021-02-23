@@ -15,6 +15,7 @@
   .productDetail{
     width: 60%;
   }
+
   .total{
     width: 60%;
     margin: 10px auto;
@@ -63,3 +64,27 @@
  .MuiList-root{
    margin: 0 auto !important;
  }
+
+   @media screen and (max-width:600px) {
+     .root{
+      width: 85%;
+    }
+    .productDetail{
+      width: 85%;
+    }
+    .MuiListItem-gutters{
+      padding-left: 0;
+    }
+    .MuiTypography-body1{
+      font-size: 9px !important;
+    }
+    .MuiTypography-body2{
+      font-size: 9px !important;
+    }
+    .makeStyles-image-10{
+      margin: 10px !important;
+    }
+    .MuiListItemText-root{
+      width: 50px;
+    }
+  }
