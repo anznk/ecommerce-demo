@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProductsInCart, getUserId} from "../../reducks/users/selectors";
 import {push} from "connected-react-router"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+// import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import {db} from '../../firebase/index'
 import MenuIcon from "@material-ui/icons/Menu";
 

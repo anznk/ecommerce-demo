@@ -5,7 +5,6 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import {makeStyles} from "@material-ui/styles";
-import {PrimaryButton} from "../UIkit";
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router"
 import "../../styles/orderedProducts.scss"
@@ -51,9 +50,8 @@ const OrderedProducts = (props) => {
                                 <ListItemText primary={"$"+product.price.toLocaleString()} />
                             </div>
                             <button className="detailButton" onClick={() => goToProductPage(product.id)}>
-                            See the detail
+                            Details
                             </button>
-                            {/* <PrimaryButton label={"See the detail"} onClick={() => goToProductPage(product.id)} /> */}
                         </ListItem>
                         <Divider />
                     </>

@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {TextInput} from "../UIkit";
 import IconButton from "@material-ui/core/IconButton";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -35,19 +35,19 @@ const EditSizesArea = (props) => {
 	
 	const classes = useStyles()
 
-	const [index, setIndex] = useState(0),
-				[editSFlg, setEditSFlg] = useState(false),
+	// const [index, setIndex] = useState(0),
+	const	[editSFlg, setEditSFlg] = useState(false),
 				[editMFlg, setEditMFlg] = useState(false),
 				[editLFlg, setEditLFlg] = useState(false),
-				[size, setSize] = useState(""),
-				[quantity, setQuantity] = useState(0),
+				// [size, setSize] = useState(""),
+				// [quantity, setQuantity] = useState(0),
 				[quantityS, setQuantityS] = useState(orgS),
 				[quantityM, setQuantityM] = useState(orgM),
 				[quantityL, setQuantityL] = useState(orgL);
 
-    const inputSize = useCallback((event) => {
-        setSize(event.target.value)
-    }, [setSize]);
+    // const inputSize = useCallback((event) => {
+    //     setSize(event.target.value)
+    // }, [setSize]);
 
     const inputQuantity = useCallback((event) => {
 			const target = event.target;
@@ -61,7 +61,7 @@ const EditSizesArea = (props) => {
 				setQuantityL(value);
 			}  
         // setQuantity(event.target.value)
-    }, [setQuantity]);
+    }, []);
 
     const addSize = (quantityS, quantityM, quantityL) => {
 			if(props.sizes.length > 0){
@@ -92,9 +92,9 @@ const EditSizesArea = (props) => {
 				setEditLFlg(true);
 			}  
     }
-    useEffect(() => {
-			setIndex(props.sizes.length)
-    },[props.sizes.length])
+    // useEffect(() => {
+		// 	setIndex(props.sizes.length)
+    // },[props.sizes.length])
 
     return (
 			<div aria-label="サイズ展開">

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {CardElement, useElements} from "@stripe/react-stripe-js";
 import {makeStyles} from "@material-ui/styles";
 import {theme} from "../../assets/theme";
-import {GreyButton, PrimaryButton, TextDetail} from "../UIkit";
+import {TextDetail} from "../UIkit";
 import {useDispatch} from "react-redux";
 import {retrievePaymentMethod, registerCard} from "../../reducks/payments/operations";
 import {useStripe} from "@stripe/react-stripe-js";

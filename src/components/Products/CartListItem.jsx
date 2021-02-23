@@ -41,7 +41,7 @@ const CartListItem = (props) => {
         <>
             <ListItem className={classes.list}>
                 <ListItemAvatar>
-                    <img className={classes.image} src={image} alt="Product image" />
+                    <img className={classes.image} src={image} alt="Product" />
                 </ListItemAvatar>
                 {/* <div className="productDetail"> */}
                     <ListItemText className="productDetail" primary={props.product.name} secondary={"Size：" + props.product.size} />

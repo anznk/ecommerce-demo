@@ -123,9 +123,9 @@ const ClosableDrawer = (props) => {
 				</div>
 			<Divider />
 				<List>
-					{menus.map(menu => (
+					{menus.map((menu, index) => (
 						((isAdministrator && menu.id === "register") || menu.id !== "register") && (
-							<ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+							<ListItem button key={index} onClick={(e) => menu.func(e, menu.value)}>
 								<ListItemIcon>
 									{menu.icon}
 								</ListItemIcon>
@@ -142,8 +142,8 @@ const ClosableDrawer = (props) => {
 				</List>
 				<Divider />
 				<List>
-					{filters.map(filter => (
-						<ListItem button key={filter.id} onClick={(e) => filter.func(e, filter.value)}>
+					{filters.map((filter, index) => (
+						<ListItem button key={index} onClick={(e) => filter.func(e, filter.value)}>
 							<ListItemText primary={filter.label} />
 						</ListItem>
 					))}
