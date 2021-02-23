@@ -12,7 +12,7 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import {theme} from './assets/theme'
 import App from './App';
 
-// connected-react-router - action経由でルーティングが可能、push,replace..
+
 const history = History.createBrowserHistory();
 export const store = createStore(history);
 
