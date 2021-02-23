@@ -17,5 +17,21 @@
     border: 1px solid #999;
     color: #4d4d4d;
   }
+}
+@media screen and (max-width:600px) {
+  .detailButton{
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  // border: 1px solid #dfdfdf;
+  color: #999;
+  background:transparent;
+  &:hover {
+    border: 1px solid #999;
+    color: #4d4d4d;
+  }
+}
 
 }

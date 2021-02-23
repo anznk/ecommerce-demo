@@ -26,7 +26,6 @@ export const fetchProducts = (category) => {
 			.then(snapshots => {
 			const productList = []
 			snapshots.forEach(snapshot => {
-				console.log("snapshot", snapshot);
 				const product = snapshot.data()
 				productList.push(product)
 			})
