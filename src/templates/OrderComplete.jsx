@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
-import {PrimaryButton} from "../components/UIkit";
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router"
+import "../styles/orderComplete.scss"
 
 const OrderComplete = () => {
     const dispatch = useDispatch()
@@ -14,7 +14,10 @@ const OrderComplete = () => {
         <div className="c-section-container">
             <p>Thank you for shopping</p>
             <div className="module-spacer--medium" />
-            <PrimaryButton label="continue shopping" onClick={goBackToTop} />
+            <div className="buttonArea">
+            <button className="goBackButton" onClick={goBackToTop}>Continue shopping</button>
+            </div>
+            {/* <PrimaryButton label="continue shopping" onClick={goBackToTop} /> */}
         </div>
     );
 };
