@@ -77,10 +77,10 @@
         display: block;
     }
     .makeStyles-iconButtons-4{
-        width: 30%;
+        width: 20%;
     }
     .MuiIconButton-root{
-        padding:1px;
+        padding: 1px !important;
     }
 }
 .p-grid__list-images {
