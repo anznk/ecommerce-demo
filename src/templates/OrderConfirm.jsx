@@ -98,6 +98,9 @@ const OrderConfirm = () => {
 						{/* <PrimaryButton label={"Confirmed your order"} onClick={order} /> */}
 					</div>
 				</div>
+				<div className="buttonAreaSp">
+					<button className="confirmedButton" onClick={order}> Confirmed your order </button>
+				</div>
 			</section>
     );
 };

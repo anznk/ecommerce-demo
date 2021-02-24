@@ -66,7 +66,7 @@
  }
 
    @media screen and (max-width:600px) {
-     .root{
+    .root{
       width: 85%;
     }
     .productDetail{
@@ -82,9 +82,17 @@
       font-size: 9px !important;
     }
     .makeStyles-image-10{
-      margin: 10px !important;
+      margin: 5px !important;
     }
     .MuiListItemText-root{
       width: 50px;
+    }
+    .button{
+      width: 120px;
+      height: 20px;
+      font-size: 10px;
+    }
+    .buckButton{
+      margin-right: 5px;
     }
   }
