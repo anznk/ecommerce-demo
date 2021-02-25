@@ -10,7 +10,7 @@ import {getCustomerId, getPaymentMethodId} from "../../reducks/users/selectors";
 import {useSelector} from "react-redux";
 import {push} from "connected-react-router"
 import {hideLoadingAction, showLoadingAction} from "../../reducks/loading/actions";
-import "../../styles/paymentEdit.scss"
+import "../../assets/styles/paymentEdit.scss"
 
 const useStyles = makeStyles({
     element: {

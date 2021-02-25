@@ -4,7 +4,7 @@ import {getProductsInCart} from "../reducks/users/selectors";
 import List from "@material-ui/core/List";
 import {CartListItem} from "../components/Products";
 import {push} from "connected-react-router"
-import "../styles/cartList.scss"
+import "../assets/styles/cartList.scss"
 
 const CartList = () => {
 	const dispatch = useDispatch();

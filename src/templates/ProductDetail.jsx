@@ -6,7 +6,7 @@ import {db, FirebaseTimestamp} from "../firebase";
 import {SizeTable, ImageSwiper} from "../components/Products";
 import {addProductToCart} from "../reducks/users/operations";
 import {returnCodeToBr} from "../function/common";
-import "../styles/productDetail.scss"
+import "../assets/styles/productDetail.scss"
 
 const ProductDetail = () => {
     const dispatch = useDispatch()

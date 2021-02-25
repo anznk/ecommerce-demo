@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {TextInput} from "../components/UIkit";
 import {signUp} from '../reducks/users/operations'
 import {useDispatch} from "react-redux";
-import "../styles/signUp.scss"
+import "../assets/styles/signUp.scss"
 
 const SignUp = () => {
   const dispatch = useDispatch();

@@ -13,7 +13,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import {deleteProduct} from "../../reducks/products/operations";
-import '../../styles/productCard.scss';
+import '../../assets/styles/productCard.scss';
 
 const ProductCard = (props) => {
     

@@ -2,7 +2,7 @@
 
 html {
     font-size: 16px;
-    font-family:  '游ゴシック', YuGothic, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3','ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -184,8 +184,8 @@ abbr, acronym, blockquote, code, input, kbd, q, samp, var {
 }
 
 body {
-    background: #fff;
-    color: #000;
+    color: #999;
+    background: #fbfbf5;
     cursor: auto;
     font-size: 1em;
     font-style: normal;

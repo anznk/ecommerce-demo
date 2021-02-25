@@ -2,7 +2,6 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import {SignIn, SignUp, Reset, ProductList, ProductDetail, ProductEdit, ProductAdd, CartList, OrderConfirm, OrderComplete, OrderHistory, MyPage, CheckoutWrapper} from "./templates";
 import Auth from "./Auth";
-import "./styles/index.scss"
 
 const Router = () => {
     return (

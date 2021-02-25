@@ -13,7 +13,7 @@ import {Elements} from "@stripe/react-stripe-js";
 import {hideLoadingAction, showLoadingAction} from "../reducks/loading/actions";
 import {retrievePaymentMethod, paymentIntent} from "../reducks/payments/operations";
 import {getCustomerId, getPaymentMethodId} from "../reducks/users/selectors";
-import "../styles/orderConfirm.scss"
+import "../assets/styles/orderConfirm.scss"
 
 require('dotenv').config();
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
