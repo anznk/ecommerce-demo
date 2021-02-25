@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 // import ImageSwiper from "../components/Products/ImageSwiper";
-import {makeStyles} from "@material-ui/styles";
+// import {makeStyles} from "@material-ui/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {db, FirebaseTimestamp} from "../firebase";
 import {SizeTable, ImageSwiper} from "../components/Products";

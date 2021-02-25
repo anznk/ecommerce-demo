@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {TextInput, PrimaryButton} from "../components/UIkit";
+import {TextInput} from "../components/UIkit";
 import {signUp} from '../reducks/users/operations'
 import {useDispatch} from "react-redux";
 import "../styles/signUp.scss"
@@ -26,27 +26,6 @@ const SignUp = () => {
   const inputUsername = useCallback((e) => {
       setUsername(e.target.value)
   },[setUsername]);
-
-  // const [inputValues, setInputValues] = useState({
-  //   email:"",
-  //   password:"",
-  //   confirmPassword:"",
-  //   username:""
-  // })
-
-  // const userInput = useCallback(
-  //   (event) => {
-  //     const target = event.target;
-  //     const value = target.type === "checkbox" ? target.checked : target.value;
-  //     // const value = target.value;
-  //     const name = target.name;
-
-  //     setInputValues({ ...inputValues, [name]: value });
-      
-  //   },
-  //   [setInputValues],
-  // )
-
 
   return(
     <div className="c-section-container">
