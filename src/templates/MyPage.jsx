@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SecondaryButton, TextDetail} from "../components/UIkit";
 import {getUsername} from "../reducks/users/selectors";
 import {push} from "connected-react-router";
-import "../styles/mypage.scss"
+import "../assets/styles/mypage.scss"
 
 const UserMyPage = () => {
   const dispatch = useDispatch();

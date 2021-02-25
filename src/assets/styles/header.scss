@@ -1,0 +1,15 @@
+.logoArea{
+  width:80%;
+  padding-left: 20%;
+  text-align: center;
+}
+.logo{
+  cursor: pointer;
+}
+@media screen and (max-width:600px) {
+  .logoArea{
+    width:70%;
+    padding-left: 0;
+    text-align: left;
+  }
+}

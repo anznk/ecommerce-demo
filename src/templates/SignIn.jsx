@@ -3,7 +3,7 @@ import {TextInput} from "../components/UIkit";
 import {useDispatch} from "react-redux";
 import {signIn} from "../reducks/users/operations";
 import {push} from "connected-react-router"
-import "../styles/signIn.scss"
+import "../assets/styles/signIn.scss"
 
 const SignIn = () => {
     const dispatch = useDispatch();

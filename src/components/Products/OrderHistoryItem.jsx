@@ -3,7 +3,7 @@ import Divider from "@material-ui/core/Divider";
 import {OrderedProducts} from "./index";
 import {datetimeToString, dateToString} from "../../function/common";
 import {TextDetail} from "../UIkit";
-import "../../styles/orderHistoryItem.scss"
+import "../../assets/styles/orderHistoryItem.scss"
 
 const OrderHistoryItem = (props) => {
     const orderedDatetime = datetimeToString(props.order.updated_at.toDate())

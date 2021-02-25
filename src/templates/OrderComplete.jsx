@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router"
-import "../styles/orderComplete.scss"
+import "../assets/styles/orderComplete.scss"
 
 const OrderComplete = () => {
     const dispatch = useDispatch()

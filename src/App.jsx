@@ -1,8 +1,8 @@
 import React from 'react';
 import {Footer, Loading, ScrollToTop} from './components/UIkit'
 import {Header} from './components/Header'
-import  "./assets/reset.css"
-import  "./assets/style.css"
+import  "./assets/styles/reset.scss"
+import  "./assets/styles/style.scss"
 import Router from "./Router";
 
 const App = () => {

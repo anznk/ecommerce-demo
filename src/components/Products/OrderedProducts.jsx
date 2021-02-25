@@ -7,7 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import {makeStyles} from "@material-ui/styles";
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router"
-import "../../styles/orderedProducts.scss"
+import "../../assets/styles/orderedProducts.scss"
 
 const useStyles = makeStyles((theme) => ({
     list: {
