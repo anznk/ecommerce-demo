@@ -82,6 +82,9 @@
     .MuiIconButton-root{
         padding: 1px !important;
     }
+    .MuiBadge-root{
+        margin-right: 5px;
+    }
 }
 .p-grid__list-images {
     /* display: flex;
