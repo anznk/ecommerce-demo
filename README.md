@@ -10,5 +10,10 @@ Front-end for an e-commerce clothes selling website.
  Backend: node.js, Firebase, Stripe
  
  Other: AWS Amplify
+ 
+# Architecture
+
+# Author
+[Anzu Nakayama](https://github.com/anznk)
 
 
