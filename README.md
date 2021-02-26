@@ -9,7 +9,7 @@ Front-end for an e-commerce clothes selling website.
  
  Backend: node.js, Firebase, Stripe
  
- Other: AWS Amplify
+ Hosting: AWS Amplify
  
 # Architecture
 
