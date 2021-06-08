@@ -6,8 +6,8 @@ import * as History from 'history';
 import createStore from './reducks/store/store';
 import * as serviceWorker from './serviceWorker';
 import {ErrorBoundary} from "./components/UIkit";
-import './assets/reset.css'
-import './assets/style.css'
+import './assets/styles/reset.scss'
+import './assets/styles/style.scss'
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import {theme} from './assets/theme'
 import App from './App';

@@ -35,7 +35,7 @@ export const registerCard = (stripe, elements, customerId) => {
         const uid = user.uid;
         const username = user.username;
 
-        dispatch(showLoadingAction("登録中..."));
+        dispatch(showLoadingAction("registrarion processing..."));
         //*********************** START VALIDATION **************************//
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable

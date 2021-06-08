@@ -1,11 +1,11 @@
 import React, {useCallback, useMemo, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getProductsInCart} from "../reducks/users/selectors";
-import {makeStyles} from "@material-ui/core/styles";
+// import {makeStyles} from "@material-ui/core/styles";
 import {CartListItem} from "../components/Products";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import {PrimaryButton, TextDetail} from "../components/UIkit";
+import {TextDetail} from "../components/UIkit";
 import {orderProduct} from "../reducks/products/operations";
 import {PaymentEdit} from "../components/Payment";
 import {loadStripe} from "@stripe/stripe-js/pure";
@@ -13,15 +13,11 @@ import {Elements} from "@stripe/react-stripe-js";
 import {hideLoadingAction, showLoadingAction} from "../reducks/loading/actions";
 import {retrievePaymentMethod, paymentIntent} from "../reducks/payments/operations";
 import {getCustomerId, getPaymentMethodId} from "../reducks/users/selectors";
-import "../styles/orderConfirm.scss"
+import "../assets/styles/orderConfirm.scss"
 
 require('dotenv').config();
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-
-
-
 const OrderConfirm = () => {
-
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
     const productsInCart = getProductsInCart(selector);
@@ -94,9 +90,10 @@ const OrderConfirm = () => {
 						<Divider />
 						<div className="module-spacer--extra-extra-small" />
 						<TextDetail label={"Total"} value={"$"+total.toLocaleString()} />
-						
-						{/* <PrimaryButton label={"Confirmed your order"} onClick={order} /> */}
 					</div>
+				</div>
+				<div className="buttonAreaSp">
+					<button className="confirmedButton" onClick={order}> Confirmed your order </button>
 				</div>
 			</section>
     );

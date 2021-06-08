@@ -1,0 +1,24 @@
+.c-section-container{
+  p{
+    text-align: center;
+  }
+}
+.buttonArea{
+  width: 100%;
+  text-align: center;
+  .goBackButton{
+    margin: 50px auto 0;
+    width: 200px;
+    height: 50px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+    color: #fff;
+    background:#4d4d4d;
+    &:hover {
+      background: #dfdfdf;
+      border: 1px solid #dfdfdf;
+      color: #4d4d4d;
+    }
+  }
+}

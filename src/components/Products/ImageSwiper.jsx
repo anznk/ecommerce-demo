@@ -29,9 +29,15 @@ const ImageSwiper = (props) => {
 					<img src={NoImage} alt="No Image"/>
 				</div>
 			) : (
+<<<<<<< HEAD
 				images.map(image => (
 					<div className="p-media__thumb" key={image.id}>
 						<img src={image.path} alt="product pics"/>
+=======
+				images.map((image, index) => (
+					<div className="p-media__thumb" key={index}>
+						<img src={image.path} alt="product pic"/>
+>>>>>>> 3577e109b9952a8d6e4f4a8ee3b6e1d80746673b
 					</div>
 				))
 			)}

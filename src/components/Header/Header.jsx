@@ -7,6 +7,7 @@ import {getSignedIn}                  from "../../reducks/users/selectors";
 import logo                           from "../../assets/img/icons/logo.png";
 import {HeaderMenu, ClosableDrawer}   from "./index";
 import {push}                         from "connected-react-router"
+import "../../assets/styles/header.scss"
 
 const useStyles = makeStyles(() =>
 	createStyles({

@@ -1,0 +1,146 @@
+.confirmSection{
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  .leftSection{
+    width: 65%;
+    padding: 0 auto;
+    h2{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+  .detailBox{
+    margin: 0 auto 30px;
+    width: 70%;
+  }
+  .payment{
+    margin: 0 auto;
+    width: 70%;
+    // text-align: right;
+  }
+  .paymentMethod{
+    width: 80%;
+    margin: 0 auto 20px;
+  }
+  .buttonArea{
+    width: 100%;
+    text-align: center;
+    .confirmedButton{
+      margin-top: 50px;
+      width: 200px;
+      height: 50px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #dfdfdf;
+      color: #fff;
+      background:#4d4d4d;
+      &:hover {
+        background: #dfdfdf;
+        border: 1px solid #dfdfdf;
+        color: #4d4d4d;
+      }
+    }
+  }
+  .rightSection{
+    margin-top: 70px;
+    width:35%;
+    border-left: 1px solid #dfdfdf;
+    
+    .orderBox{
+      margin: 0 auto;
+      background: #FCFFFF;
+      width: 70%;
+      background: #fbfbf5;
+    }
+  }
+  @media screen and (min-width:601px) {
+    .buttonAreaSp{
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width:600px) {
+  .confirmSection{
+  display: block;
+  // width: 90%;
+  // margin: 0 auto;
+  .leftSection{
+    width: 100%;
+    margin: 0 auto;
+    h2{
+      margin-bottom: 10px;
+    }
+  }
+  .detailBox{
+    margin: 0 auto;
+    width: 90%;
+  }
+  .makeStyles-image-13{
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+  }
+  .makeStyles-image-10{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .MuiListItemText-multiline{
+    width: 200px;
+  }
+  .MuiListItem-gutters{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .MuiIconButton-root{
+    padding: 5px;
+  }
+  .payment{
+    display: flex;
+    h2{
+      font-size: 9px;
+    }
+    .paymentMethod{
+      div{
+        font-size: 9px;
+      }
+    }
+  }
+  .rightSection{
+    margin-top: 10px;
+    width: 100%; 
+    padding-top: 5px;
+    // border-top: 1px solid #dfdfdf;
+    border-left: none;
+    .orderBox{
+      width: 95%; 
+    }
+  }
+  .buttonArea{
+    display: none;
+  }
+  .buttonAreaSp{
+    width: 100%;
+    text-align: center;
+    .confirmedButton{
+      margin-top: 50px;
+      width: 200px;
+      height: 50px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #dfdfdf;
+      color: #fff;
+      background:#4d4d4d;
+      &:hover {
+        background: #dfdfdf;
+        border: 1px solid #dfdfdf;
+        color: #4d4d4d;
+      }
+    }
+    
+  }
+
+  }
+
+}

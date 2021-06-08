@@ -72,6 +72,19 @@
     display: flex;
     flex-flow: row wrap;
 }
+.errorMessage{
+  color: red;
+}
+.MuiPaper-elevation4{
+  box-shadow: none !important;
+}
+.makeStyles-menuBar-2{
+  background: #fbfbf5 !important;
+}
+
+footer{
+  text-align: center;
+}
 @media screen and (max-width:600px) {
     .p-grid__row {
         display: block;
@@ -80,7 +93,10 @@
         width: 30%;
     }
     .MuiIconButton-root{
-        padding:1px;
+        padding: 1px !important;
+    }
+    .MuiBadge-root{
+        margin-right: 5px;
     }
 }
 .p-grid__list-images {
@@ -151,7 +167,7 @@
 }
 
 .u-text__headline {
-    color: #2b2b2b;
+    color: #999;
     font-size: 1.563rem;
     margin: 0 auto 1rem auto;
 }

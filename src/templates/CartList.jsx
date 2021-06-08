@@ -4,7 +4,7 @@ import {getProductsInCart} from "../reducks/users/selectors";
 import List from "@material-ui/core/List";
 import {CartListItem} from "../components/Products";
 import {push} from "connected-react-router"
-import "../styles/cartList.scss"
+import "../assets/styles/cartList.scss"
 
 const CartList = () => {
 	const dispatch = useDispatch();
@@ -24,11 +24,11 @@ const CartList = () => {
 	}, []);
 
 	return (
-		<section class="cartSection">
-			<h2 class="pageTitle bd-bottom">Cart</h2>
+		<section className="cartSection">
+			<h2 className="pageTitle bd-bottom">Cart</h2>
 			<List className="root">
 					{productsInCart.length > 0 && (
-							productsInCart.map(product => <CartListItem product={product} key={product.cartId} />)
+							productsInCart.map((product, index) => <CartListItem product={product} key={index} />)
 					)}
 			</List>
 			<div className="total">Total: ${subtotal.toLocaleString()}</div>
