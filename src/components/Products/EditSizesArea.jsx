@@ -32,10 +32,6 @@ const EditSizesArea = (props) => {
 		orgL = props.sizes[2].quantity;
 	}	
 	const classes = useStyles()
-<<<<<<< HEAD
-
-=======
->>>>>>> 3577e109b9952a8d6e4f4a8ee3b6e1d80746673b
 	// const [index, setIndex] = useState(0),
 	const	[editSFlg, setEditSFlg] = useState(false),
 				[editMFlg, setEditMFlg] = useState(false),
@@ -50,21 +46,6 @@ const EditSizesArea = (props) => {
     //     setSize(event.target.value)
     // }, [setSize]);
 
-<<<<<<< HEAD
-    const inputQuantity = useCallback((event) => {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
-			if(name === "S"){
-				setQuantityS(value);
-			} else if(name === "M"){
-				setQuantityM(value);
-			} else {
-				setQuantityL(value);
-			}  
-        // setQuantity(event.target.value)
-    }, []);
-=======
 	const inputQuantity = useCallback((event) => {
 		const target = event.target;
 		const value = target.value;
@@ -78,7 +59,6 @@ const EditSizesArea = (props) => {
 		}  
 			// setQuantity(event.target.value)
 	}, []);
->>>>>>> 3577e109b9952a8d6e4f4a8ee3b6e1d80746673b
 
 	const addSize = (quantityS, quantityM, quantityL) => {
 		if(props.sizes.length > 0){
@@ -96,17 +76,6 @@ const EditSizesArea = (props) => {
 		])
 	}
 
-<<<<<<< HEAD
-    const editSize = (size) => {
-			if(size === "S"){
-				setEditSFlg(true);
-			} else if(size === "M"){
-				setEditMFlg(true);
-			} else {
-				setEditLFlg(true);
-			}  
-    }
-=======
 	const editSize = (size) => {
 		if(size === "S"){
 			setEditSFlg(true);
@@ -116,13 +85,12 @@ const EditSizesArea = (props) => {
 			setEditLFlg(true);
 		}  
 	}
->>>>>>> 3577e109b9952a8d6e4f4a8ee3b6e1d80746673b
     // useEffect(() => {
 		// 	setIndex(props.sizes.length)
     // },[props.sizes.length])
 
     return (
-			<div aria-label="サイズ展開">
+			<div aria-label="size">
 				<TableContainer component={Paper}>
 					<Table aria-label="simple table">
 						<TableHead>
